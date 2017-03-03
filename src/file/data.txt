@@ -1,0 +1,45 @@
+sim/time/total_flight_time_sec		float	TIME
+sim/flightmodel/position/longitude	float	LONGITUDE
+sim/flightmodel/position/latitude	float	LATITUDE
+sim/flightmodel/position/elevation	float	ALTITUDE
+sim/flightmodel/position/y_agl 		float	FLY_ALTITUDE
+sim/weather/wind_direction_degt[0] 	float	WIND_DIRECTION
+sim/weather/wind_speed_kt[0]		float	WIND_SPEED
+#sim/flightmodel/position/vh_ind	float	VERTICAL_SPEED
+sim/flightmodel/position/vh_ind_fpm	float	VERTICAL_SPEED
+#sim/cockpit2/gauges/indicators/vvi_fpm_pilot	float	VERTICAL_SPEED
+sim/flightmodel/position/indicated_airspeed	float	INDICATED_AIR_SPEED
+sim/flightmodel/position/true_airspeed	float	TRUE_AIR_SPEED
+sim/flightmodel/position/groundspeed	float 	GROUND_SPEED
+sim/flightmodel/forces/g_nrml		float	GFORCE
+sim/flightmodel/position/psi		float	HEADING
+sim/flightmodel/position/magpsi		float	MAGNETIC_HEADING
+sim/flightmodel/position/alpha		float	AOA
+sim/flightmodel/position/true_theta	float	PITCH
+sim/flightmodel/position/phi		float	BANK
+sim/flightmodel/position/beta		float	BETA
+
+sim/cockpit2/engine/actuators/throttle_ratio@0	float	THROTTLE_LEVEL
+sim/cockpit2/engine/actuators/prop_rotation_speed_rad_sec@0	float	PROP_LEVEL
+#sim/cockpit2/engine/actuators/prop_angle_degrees_all	float	PROP_LEVEL
+sim/cockpit2/engine/actuators/mixture_ratio@0	float	MIXTURE_LEVEL
+sim/cockpit2/controls/yoke_pitch_ratio	float	ELEVATOR_CONTROL
+sim/cockpit2/controls/yoke_roll_ratio	float	AILERON_CONTROL
+sim/cockpit2/controls/yoke_heading_ratio	float	RUDDER_CONTROL
+sim/cockpit2/controls/flap_ratio	float	FLAPS_CONTROL
+sim/cockpit2/engine/indicators/engine_speed_rpm@0	float	ENGINE_RPM
+sim/cockpit2/engine/indicators/prop_speed_rpm@0	float	PROP_RPM
+sim/cockpit2/engine/indicators/torque_n_mtr@0	float	TORQUE
+sim/flightmodel/controls/hstab1_elv1def float	ELEVATOR_DEFLECTION
+sim/flightmodel/controls/wing1l_ail1def	float	AILERON_DEFLECTION
+sim/flightmodel/controls/vstab1_rud1def	float	RUDDER_DEFLECTION
+sim/flightmodel/controls/wing1l_fla1def	float	FLAPS_DEFLECTION
+sim/flightmodel2/gear/deploy_ratio@0	float	GEAR_POSITION
+sim/cockpit2/controls/gear_handle_down	int	GEAR_CONTROL
+
+sim/cockpit2/controls/elevator_trim	float	ELEVATOR_TRIM_CONTROL
+sim/cockpit2/controls/aileron_trim	float	AILERON_TRIM_CONTROL
+sim/cockpit2/controls/rudder_trim	float	RUDDER_TRIM_CONTROL
+
+
+
