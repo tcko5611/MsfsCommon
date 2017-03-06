@@ -29,7 +29,7 @@ import tw.com.hasco.MSFS.model.DataGetter;
 import tw.com.hasco.MSFS.model.PlaneType;
 import tw.com.hasco.MSFS.network.MsfsUdpClient;
 import tw.com.hasco.MSFS.network.MsfsUdpServer;
-import tw.com.hasco.arduino.StewPlatform;
+
 // import tw.com.hasco.arduino.ControlArduino;
 
 /**
@@ -54,8 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
     ServerFrame serverFrame;
     MsfsUdpClient udpClient;
     MsfsUdpServer udpServer;
-    // if not have stewplatform then set as null
-    StewPlatform sp;
+    
     double recordPeriod = 5; // record time period
 
     boolean recordable = false;
@@ -99,14 +98,6 @@ public class MainFrame extends javax.swing.JFrame {
         serverFrame = new ServerFrame();
 
         plotAltitudeFrame = new AltFrame();
-        if (true) {
-            try {
-                sp = new StewPlatform();
-            } catch (SerialPortException ex) {
-                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                sp = null;
-            }
-        }
     }
 
     private void disableAll() {
@@ -1167,9 +1158,7 @@ public class MainFrame extends javax.swing.JFrame {
                 udpServer.stop(true);
                 udpServer = null;
             }
-            if (sp != null) {
-                sp.stop();
-            }
+           
         }
         reflyButton.setEnabled(false);
         dataGetter = null;
@@ -1190,10 +1179,7 @@ public class MainFrame extends javax.swing.JFrame {
             // need to add observer for udpServer
             udpServer.addObserver(plotTraceFrame);
         }
-        if (sp != null) {
-            sp.start();
-            dataGetter.addObserver(sp);
-        }
+        
         if (recordable) {
             this.recordMenuItem.setEnabled(true);
             startRecordButton.setEnabled(true);
@@ -1202,9 +1188,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
         
         executor.execute(dataGetter);
-        if (sp != null) {
-            executor.execute(sp);
-        }
+       
     }
 
     /**
