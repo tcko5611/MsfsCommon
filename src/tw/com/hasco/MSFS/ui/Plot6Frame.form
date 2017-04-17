@@ -23,94 +23,90 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="pitchPanel" alignment="0" pref="652" max="32767" attributes="0"/>
                   <Component id="rollPanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="yawPanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="altPanel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="aoaPanel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="pitchPanel" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="upTimePanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                      <Component id="downTimePanel" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="aoaPanel" alignment="1" max="32767" attributes="0"/>
                   <Component id="betaPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="upPanel" max="32767" attributes="0"/>
+                  <Component id="downPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <Component id="upPanel" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="upTimePanel" min="-2" max="-2" attributes="0"/>
+              <Component id="pitchPanel" pref="89" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="pitchPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="rollPanel" pref="89" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="rollPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="yawPanel" pref="89" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="yawPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="altPanel" pref="89" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="altPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="aoaPanel" pref="88" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="aoaPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="betaPanel" pref="85" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="betaPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="downTimePanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="downPanel" min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Component class="tw.com.hasco.MSFS.ui.Plot1Panel" name="pitchPanel">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[0, 0]"/>
+        </Property>
+      </Properties>
     </Component>
-    <Container class="tw.com.hasco.MSFS.ui.UpTimePanel" name="upTimePanel">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="500" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
     <Component class="tw.com.hasco.MSFS.ui.Plot1Panel" name="rollPanel">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[0, 0]"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="tw.com.hasco.MSFS.ui.Plot1Panel" name="yawPanel">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[0, 0]"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="tw.com.hasco.MSFS.ui.Plot1Panel" name="altPanel">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[0, 0]"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="tw.com.hasco.MSFS.ui.Plot1Panel" name="aoaPanel">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[0, 0]"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="tw.com.hasco.MSFS.ui.Plot1Panel" name="betaPanel">
+      <Properties>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[0, 0]"/>
+        </Property>
+      </Properties>
     </Component>
-    <Container class="tw.com.hasco.MSFS.ui.DownTimePanel" name="downTimePanel">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="500" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
+    <Component class="tw.com.hasco.MSFS.ui.UpPanel" name="upPanel">
+    </Component>
+    <Component class="tw.com.hasco.MSFS.ui.DownPanel" name="downPanel">
+    </Component>
   </SubComponents>
 </Form>

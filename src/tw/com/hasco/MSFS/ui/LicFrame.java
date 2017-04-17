@@ -3,6 +3,7 @@ package tw.com.hasco.MSFS.ui;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import tw.com.hasco.MSFS.LicChecker;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,168 +15,214 @@ import tw.com.hasco.MSFS.LicChecker;
  * @author DELL
  */
 public class LicFrame extends javax.swing.JFrame {
+
     /**
      * Creates new form MainFrame
      */
-    
 
     public LicFrame() {
         initComponents();
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
         checkLic();
-        setTitle("User Info");     
+        setCkboxLabel();
+        setTitle("User Info");
     }
-private void checkLic() {
-    // set front end textfied
-    this.userTextField.setText(LicChecker.getInstance().getUser());
-    this.purchaseDateTextField.setText(LicChecker.getInstance().getPurchaseDate());
-    this.expirDateTextField.setText(LicChecker.getInstance().getExpireDate());
-    this.macTextField.setText(LicChecker.getInstance().getMacNum());
-    // graphic
-    if (LicChecker.getInstance().isG1_LLA()) {
-        this.LLA.setSelected(true);
+
+    private void setCkboxLabel() {
+        LocaleManager l = LocaleManager.getInstance("Taiwan");
+        this.LLA.setText("G1-" + l.getString("ckbox_g1"));
+        this.Ctrl.setText("G2-" + l.getString("ckbox_g2"));
+        this.pitch.setText("G3-" + l.getString("ckbox_g3"));
+        this.roll.setText("G4-" + l.getString("ckbox_g4"));
+        this.yaw.setText("G5-" + l.getString("ckbox_g5"));
+        this.plane.setText("G6-" + l.getString("ckbox_g6"));
+        this.alt.setText("G7-" + l.getString("ckbox_g7"));
+        this.threed.setText("G8-" + l.getString("ckbox_g8"));
+        this.plot6.setText("G9-" + l.getString("ckbox_g9"));
+        this.refly.setText("R1-" + l.getString("ckbox_r1"));
+        this.record.setText("R2-" + l.getString("ckbox_r2"));
+        this.play.setText("R3-"+l.getString("ckbox_r3"));
+        this.selfPort.setText("M1-" + l.getString("ckbox_m1"));
+        this.self2DMap.setText("M2-" + l.getString("ckbox_m2"));
+        this.self3DBuil.setText("M3-" + l.getString("ckbox_m3"));
+        this.coorMap.setText("M4-" + l.getString("ckbox_m4"));
+        this.mark.setText("M5-" + l.getString("ckbox_m5"));
+        this.phyMath.setText("A1-" + l.getString("ckbox_a1"));
+        this.airDyn.setText("A2-" + l.getString("ckbox_a2"));
+        this.flyTrain.setText("A3-" + l.getString("ckbox_a3"));
+        this.flyQual.setText("A4-" + l.getString("ckbox_a4"));
+        this.flyChk.setText("A5-" + l.getString("ckbox_a5"));
+        this.eneShip.setText("D1-" + l.getString("ckbox_d1"));
+        this.airPic.setText("D2-" + l.getString("ckbox_d2"));
+        this.tTwn.setText("T1-" + l.getString("ckbox_t1"));
+        this.tNAsia.setText("T2-" + l.getString("ckbox_t2"));
+        this.tSAsia.setText("T3-" + l.getString("ckbox_t3"));
+        this.tPac.setText("T4-" + l.getString("ckbox_t4"));
+        this.tUsa.setText("T5-" + l.getString("ckbox_t5"));
+        this.uTwn.setText("U1-" + l.getString("ckbox_u1"));
+        this.uNAsia.setText("U2-" + l.getString("ckbox_u2"));
+        this.uSAsia.setText("U3-" + l.getString("ckbox_u3"));
+        this.uPac.setText("U4-" + l.getString("ckbox_u4"));
+        this.uUsa.setText("U5-" + l.getString("ckbox_u5"));
+        this.vTwn.setText("V1-" + l.getString("ckbox_v1"));
+        this.vNAsia.setText("V2-" + l.getString("ckbox_v2"));
+        this.vSAsia.setText("V3-" + l.getString("ckbox_v3"));
+        this.vPac.setText("V4-" + l.getString("ckbox_v4"));
+        this.vUsa.setText("V5-" + l.getString("ckbox_v5"));
     }
-    if (LicChecker.getInstance().isG2_CTRL()) {
-        this.Ctrl.setSelected(true);
+
+    private void checkLic() {
+        // set front end textfied
+        this.userTextField.setText(LicChecker.getInstance().getUser());
+        this.purchaseDateTextField.setText(LicChecker.getInstance().getPurchaseDate());
+        this.expirDateTextField.setText(LicChecker.getInstance().getExpireDate());
+        this.macTextField.setText(LicChecker.getInstance().getMacNum());
+        // graphic
+        if (LicChecker.getInstance().isG1_LLA()) {
+            this.LLA.setSelected(true);
+        }
+        if (LicChecker.getInstance().isG2_CTRL()) {
+            this.Ctrl.setSelected(true);
+        }
+        if (LicChecker.getInstance().isG3_PITCH()) {
+            this.pitch.setSelected(true);
+        }
+        if (LicChecker.getInstance().isG4_ROLL()) {
+            this.roll.setSelected(true);
+        }
+        if (LicChecker.getInstance().isG5_YAW()) {
+            this.yaw.setSelected(true);
+        }
+        if (LicChecker.getInstance().isG6_PLANE()) {
+            this.plane.setSelected(true);
+        }
+        if (LicChecker.getInstance().isG7_ALT()) {
+            this.alt.setSelected(true);
+        }
+        if (LicChecker.getInstance().isG8_THREED()) {
+            this.threed.setSelected(true);
+        }
+        if (LicChecker.getInstance().isG9_PLOT6()) {
+            this.plot6.setSelected(true);
+        }
+        // simulator
+        if (LicChecker.getInstance().isS1_FSX()) {
+            this.fsx.setSelected(true);
+            this.fs2002.setSelected(true);
+            this.fs2004.setSelected(true);
+        }
+        if (LicChecker.getInstance().isS2_XPLANE()) {
+            this.xplane.setSelected(true);
+        }
+        if (LicChecker.getInstance().isS3_MODEL()) {
+            this.model.setSelected(true);
+        }
+        if (LicChecker.getInstance().isS4_DOF3()) {
+            this.dof3.setSelected(true);
+        }
+        if (LicChecker.getInstance().isS5_DOF6()) {
+            this.dof6.setSelected(true);
+        }
+        // record
+        if (LicChecker.getInstance().isR1_REFLY()) {
+            this.refly.setSelected(true);
+        }
+        if (LicChecker.getInstance().isR2_RECORD()) {
+            this.record.setSelected(true);
+        }
+        if (LicChecker.getInstance().isR3_PLAY()) {
+            this.play.setSelected(true);
+        }
+        // map
+        if (LicChecker.getInstance().isM1_SELFPORT()) {
+            this.selfPort.setSelected(true);
+        }
+        if (LicChecker.getInstance().isM2_SELF2DMAP()) {
+            this.self2DMap.setSelected(true);
+        }
+        if (LicChecker.getInstance().isM3_SELF3DBUIL()) {
+            this.self3DBuil.setSelected(true);
+        }
+        if (LicChecker.getInstance().isM4_COORMAP()) {
+            this.coorMap.setSelected(true);
+        }
+        if (LicChecker.getInstance().isM5_MARK()) {
+            this.mark.setSelected(true);
+        }
+        // Aviation
+        if (LicChecker.getInstance().isA1_PHYMATH()) {
+            this.phyMath.setSelected(true);
+        }
+        if (LicChecker.getInstance().isA2_AIRDYN()) {
+            this.airDyn.setSelected(true);
+        }
+        if (LicChecker.getInstance().isA3_FLYTRAIN()) {
+            this.flyTrain.setSelected(true);
+        }
+        if (LicChecker.getInstance().isA4_FLYQUAL()) {
+            this.flyQual.setSelected(true);
+        }
+        if (LicChecker.getInstance().isA5_FLYCHK()) {
+            this.flyChk.setSelected(true);
+        }
+        // defence
+        if (LicChecker.getInstance().isD1_ENESHIP()) {
+            this.eneShip.setSelected(true);
+        }
+        if (LicChecker.getInstance().isD2_AIRPIC()) {
+            this.airPic.setSelected(true);
+        }
+        // Area data
+        if (LicChecker.getInstance().isT1_TWN()) {
+            this.tTwn.setSelected(true);
+        }
+        if (LicChecker.getInstance().isT2_NASIA()) {
+            this.tNAsia.setSelected(true);
+        }
+        if (LicChecker.getInstance().isT3_SASIA()) {
+            this.tSAsia.setSelected(true);
+        }
+        if (LicChecker.getInstance().isT4_PAC()) {
+            this.tPac.setSelected(true);
+        }
+        if (LicChecker.getInstance().isT5_USA()) {
+            this.tUsa.setSelected(true);
+        }
+        // airport data
+        if (LicChecker.getInstance().isU1_TWN()) {
+            this.uTwn.setSelected(true);
+        }
+        if (LicChecker.getInstance().isU2_NASIA()) {
+            this.uNAsia.setSelected(true);
+        }
+        if (LicChecker.getInstance().isU3_SASIA()) {
+            this.uSAsia.setSelected(true);
+        }
+        if (LicChecker.getInstance().isU4_PAC()) {
+            this.uPac.setSelected(true);
+        }
+        if (LicChecker.getInstance().isU5_USA()) {
+            this.uUsa.setSelected(true);
+        }
+        // Aidz data
+        if (LicChecker.getInstance().isV1_TWN()) {
+            this.vTwn.setSelected(true);
+        }
+        if (LicChecker.getInstance().isV2_NASIA()) {
+            this.vNAsia.setSelected(true);
+        }
+        if (LicChecker.getInstance().isV3_SASIA()) {
+            this.vSAsia.setSelected(true);
+        }
+        if (LicChecker.getInstance().isV4_PAC()) {
+            this.vPac.setSelected(true);
+        }
+        if (LicChecker.getInstance().isV5_USA()) {
+            this.vUsa.setSelected(true);
+        }
     }
-    if (LicChecker.getInstance().isG3_PITCH()) {
-        this.pitch.setSelected(true);
-    }
-    if (LicChecker.getInstance().isG4_ROLL()) {
-        this.roll.setSelected(true);
-    }
-    if (LicChecker.getInstance().isG5_YAW()) {
-        this.yaw.setSelected(true);
-    }
-    if (LicChecker.getInstance().isG6_PLANE()) {
-        this.plane.setSelected(true);
-    }
-    if (LicChecker.getInstance().isG7_ALT()) {
-        this.alt.setSelected(true);
-    }
-    if (LicChecker.getInstance().isG8_THREED()) {
-        this.threed.setSelected(true);
-    }
-    if (LicChecker.getInstance().isG9_PLOT6()) {
-        this.plot6.setSelected(true);
-    }
-    // simulator
-     if (LicChecker.getInstance().isS1_FSX()) {
-        this.fsx.setSelected(true);
-        this.fs2002.setSelected(true);
-        this.fs2004.setSelected(true);
-    }
-    if (LicChecker.getInstance().isS2_XPLANE()) {
-        this.xplane.setSelected(true);
-    }
-    if (LicChecker.getInstance().isS3_MODEL()) {
-        this.model.setSelected(true);
-    }
-    if (LicChecker.getInstance().isS4_DOF3()) {
-        this.dof3.setSelected(true);
-    }
-    if (LicChecker.getInstance().isS5_DOF6()) {
-        this.dof6.setSelected(true);
-    }
-    // record
-     if (LicChecker.getInstance().isR1_REFLY()) {
-        this.refly.setSelected(true);
-    }
-    if (LicChecker.getInstance().isR2_RECORD()) {
-        this.record.setSelected(true);
-    }
-    if (LicChecker.getInstance().isR3_PLAY()) {
-        this.play.setSelected(true);
-    }
-    // map
-     if (LicChecker.getInstance().isM1_SELFPORT()) {
-        this.selfPort.setSelected(true);
-    }
-    if (LicChecker.getInstance().isM2_SELF2DMAP()) {
-        this.self2DMap.setSelected(true);
-    }
-    if (LicChecker.getInstance().isM3_SELF3DBUIL()) {
-        this.sel3DBuil.setSelected(true);
-    }
-    if (LicChecker.getInstance().isM4_COORMAP()) {
-        this.coorMap.setSelected(true);
-    }
-    if (LicChecker.getInstance().isM5_MARK()) {
-        this.mark.setSelected(true);
-    }
-    // Aviation
-     if (LicChecker.getInstance().isA1_PHYMATH()) {
-        this.phyMath.setSelected(true);
-    }
-    if (LicChecker.getInstance().isA2_AIRDYN()) {
-        this.airDyn.setSelected(true);
-    }
-    if (LicChecker.getInstance().isA3_FLYTRAIN()) {
-        this.flyTrain.setSelected(true);
-    }
-    if (LicChecker.getInstance().isA4_FLYQUAL()) {
-        this.flyQual.setSelected(true);
-    }
-    if (LicChecker.getInstance().isA5_FLYCHK()) {
-        this.flyChk.setSelected(true);
-    }
-    // defence
-     if (LicChecker.getInstance().isD1_ENESHIP()) {
-        this.eneShip.setSelected(true);
-    }
-    if (LicChecker.getInstance().isD2_AIRPIC()) {
-        this.airPic.setSelected(true);
-    }
-    // Area data
-     if (LicChecker.getInstance().isT1_TWN()) {
-        this.tTwn.setSelected(true);
-    }
-    if (LicChecker.getInstance().isT2_NASIA()) {
-        this.tNAsia.setSelected(true);
-    }
-    if (LicChecker.getInstance().isT3_SASIA()) {
-        this.tSAsia.setSelected(true);
-    }
-    if (LicChecker.getInstance().isT4_PAC()) {
-        this.tPac.setSelected(true);
-    }
-    if (LicChecker.getInstance().isT5_USA()) {
-        this.tUsa.setSelected(true);
-    }
-    // airport data
-     if (LicChecker.getInstance().isU1_TWN()) {
-        this.uTwn.setSelected(true);
-    }
-    if (LicChecker.getInstance().isU2_NASIA()) {
-        this.uNAsia.setSelected(true);
-    }
-    if (LicChecker.getInstance().isU3_SASIA()) {
-        this.uSAsia.setSelected(true);
-    }
-    if (LicChecker.getInstance().isU4_PAC()) {
-        this.uPac.setSelected(true);
-    }
-    if (LicChecker.getInstance().isU5_USA()) {
-        this.uUsa.setSelected(true);
-    }
-    // Aidz data
-    if (LicChecker.getInstance().isV1_TWN()) {
-        this.vTwn.setSelected(true);
-    }
-    if (LicChecker.getInstance().isV2_NASIA()) {
-        this.vNAsia.setSelected(true);
-    }
-    if (LicChecker.getInstance().isV3_SASIA()) {
-        this.vSAsia.setSelected(true);
-    }
-    if (LicChecker.getInstance().isV4_PAC()) {
-        this.vPac.setSelected(true);
-    }
-    if (LicChecker.getInstance().isV5_USA()) {
-        this.vUsa.setSelected(true);
-    }
-}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -211,7 +258,7 @@ private void checkLic() {
         jPanel6 = new javax.swing.JPanel();
         selfPort = new javax.swing.JCheckBox();
         self2DMap = new javax.swing.JCheckBox();
-        sel3DBuil = new javax.swing.JCheckBox();
+        self3DBuil = new javax.swing.JCheckBox();
         coorMap = new javax.swing.JCheckBox();
         mark = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
@@ -460,9 +507,9 @@ private void checkLic() {
         self2DMap.setText("M2-自建2D地圖");
         self2DMap.setEnabled(false);
 
-        sel3DBuil.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
-        sel3DBuil.setText("M3-自建3D建物");
-        sel3DBuil.setEnabled(false);
+        self3DBuil.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
+        self3DBuil.setText("M3-自建3D建物");
+        self3DBuil.setEnabled(false);
 
         coorMap.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
         coorMap.setText("M4-座標化地圖");
@@ -480,7 +527,7 @@ private void checkLic() {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(selfPort)
-                    .addComponent(sel3DBuil)
+                    .addComponent(self3DBuil)
                     .addComponent(self2DMap)
                     .addComponent(coorMap)
                     .addComponent(mark)))
@@ -493,7 +540,7 @@ private void checkLic() {
                 .addGap(0, 0, 0)
                 .addComponent(self2DMap)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sel3DBuil)
+                .addComponent(self3DBuil)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(coorMap)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -665,6 +712,7 @@ private void checkLic() {
         tNAsia.setEnabled(false);
 
         tUsa.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
+        tUsa.setSelected(true);
         tUsa.setText("T5-北美");
         tUsa.setEnabled(false);
 
@@ -892,11 +940,10 @@ private void checkLic() {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
-        
+        LocaleManager l = LocaleManager.getInstance("China");
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {            
-                new LicFrame().setVisible(true);            
+        java.awt.EventQueue.invokeLater(() -> {
+            new LicFrame().setVisible(true);
         });
     }
 
@@ -942,8 +989,8 @@ private void checkLic() {
     private javax.swing.JCheckBox record;
     private javax.swing.JCheckBox refly;
     private javax.swing.JCheckBox roll;
-    private javax.swing.JCheckBox sel3DBuil;
     private javax.swing.JCheckBox self2DMap;
+    private javax.swing.JCheckBox self3DBuil;
     private javax.swing.JCheckBox selfPort;
     private javax.swing.JCheckBox tNAsia;
     private javax.swing.JCheckBox tPac;

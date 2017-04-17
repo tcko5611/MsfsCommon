@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package tw.com.hasco.MSFS.FS;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
@@ -11,11 +12,14 @@ import tw.com.hasco.MSFS.model.MSFSDataEnum;
 import tw.com.hasco.MSFS.model.PlaneType;
 import tw.com.hasco.MSFS.model.StringBufferWithSeparator;
 
+
+enum Simulator {
+    FS, XPLANE
+}
 /**
- *
+ * basic class for Flight simulator
  * @author DELL
  */
-enum Simulator {FS, XPLANE}
 public abstract class FSBasic {
 
     List<MSFSDataEnum> planeDataLt;
@@ -32,8 +36,15 @@ public abstract class FSBasic {
     double beta;
     int engineRPM;
     PlaneType planeType;
-    int recordPeriod;
+    int recordPeriod; /** use in FsFile for send out data period */
     Simulator simulator;
+
+    /**
+     * constructor for FSBasic
+     *
+     * @param planeType for aircraft or helicopter they will write different
+     * sequence of data
+     */
     public FSBasic(PlaneType planeType) {
         this.planeType = planeType;
         switch (planeType) {
@@ -90,10 +101,17 @@ public abstract class FSBasic {
     int flapsDeflection;
     boolean stop;
 
+    /**
+     * update fs for new data
+     *
+     * @throws IOException open file fail
+     * @throws FSFileException indicate the FsFile is to end of file
+     */
     public abstract void update() throws IOException, FSFileException;
 
     /**
      * stop the FS
+     *
      * @param b
      */
     public void setStop(boolean b) {
@@ -102,7 +120,8 @@ public abstract class FSBasic {
 
     /**
      * get recordPeriod
-     * @return 
+     *
+     * @return record period use for FsFile
      */
     public int getRecordPeriod() {
         return recordPeriod;
@@ -111,7 +130,7 @@ public abstract class FSBasic {
     /**
      * get time
      *
-     * @return 
+     * @return time
      */
     public int year() {
         return year;
@@ -138,15 +157,19 @@ public abstract class FSBasic {
                 + ":" + Integer.toString(sec);
         return strTime;
     }
+
     /**
-    * get simulator
-     * @return 
-    */
+     * get simulator
+     *
+     * @return simulator name
+     */
     public String getSimulator() {
-        if (simulator == Simulator.XPLANE) return "xplane";
+        if (simulator == Simulator.XPLANE) {
+            return "xplane";
+        }
         return "fs";
     }
-    
+
     /**
      * get type
      *
@@ -163,7 +186,7 @@ public abstract class FSBasic {
     /**
      * get pitch
      *
-     * @return pitch
+     * @return pitch in degree
      */
     public double pitch() {
         return pitch;
@@ -174,9 +197,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得滾轉角（Bank）。 Note: 可使用 0x2F78。
+     * get bank
      *
-     * @return 傳回滾轉角。
+     * @return bank(roll) in degree
      */
     public double bank() {
         return bank;
@@ -187,9 +210,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得方位角（Heading）。
+     * get yaw
      *
-     * @return 傳回方位角。
+     * @return heading in degree
      */
     public double heading() {
         return heading;
@@ -200,9 +223,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得攻角（Angle of Attack）。
+     * get aoa
      *
-     * @return 傳回攻角。
+     * @return aoa in degree
      */
     public double aoa() {
         return aoa;
@@ -213,9 +236,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得測滑角（Incidence Beta）。
+     * get beta
      *
-     * @return 傳回測滑角。
+     * @return beta in degree
      */
     public double beta() {
         return beta;
@@ -226,9 +249,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得磁方角（Magnetic Heading）。
+     * get Magnetic Heading
      *
-     * @return 傳回磁方角。
+     * @return magnetic heading in degree
      */
     public double magneticHeading() {
         return magneticHeading;
@@ -239,9 +262,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得節流閥桿位（Throttle Level）。
+     * Throttle Level
      *
-     * @return 傳回節流閥桿位。
+     * @return throttle level in %
      */
     public int throttleLevel() {
         return throttleLevel;
@@ -252,9 +275,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得混合比桿位（Mixture Level）。
+     * Mixture Level
      *
-     * @return 傳回混合比桿位。
+     * @return mixture level in %
      */
     public int mixtureLevel() {
         return mixtureLevel;
@@ -265,37 +288,41 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得螺旋槳桿位（Prop Level）。
+     * Prop Leve
      *
-     * @return 傳回螺旋槳桿位。
+     * @return Prop Leve RPM
      */
     public int propLevel() {
         return propLevel;
     }
 
     public String getPropLevel() {
-        if (simulator == Simulator.XPLANE) return String.format("%d RPM", propLevel);
+        if (simulator == Simulator.XPLANE) {
+            return String.format("%d RPM", propLevel);
+        }
         return String.format("%d%%", propLevel);
     }
 
     /**
-     * 取得引擎轉數（Propeller RPM）。
+     * Propeller RPM
      *
-     * @return 傳回引擎轉數。
+     * @return Propeller RPM
      */
     public int engineRPM() {
         return engineRPM;
     }
 
     public String getEngineRPM() {
-        if (simulator == Simulator.XPLANE) return String.format("%d rpm", engineRPM);
+        if (simulator == Simulator.XPLANE) {
+            return String.format("%d rpm", engineRPM);
+        }
         return String.format("%d%%", engineRPM);
     }
 
     /**
-     * 取得螺旋槳轉數。
+     * prop rmp
      *
-     * @return 傳回螺旋槳轉數。
+     * @return prop rpm
      */
     public int propRPM() {
         return propRPM;
@@ -306,20 +333,25 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得扭力輸出（Torque）。
+     * Torque
      *
-     * @return 傳回扭力輸出。
+     * @return torque nm
      */
     public int torque() {
         return torque;
     }
 
     public String getTorque() {
-        if (simulator == Simulator.XPLANE) return String.format("%d NM", torque);
+        if (simulator == Simulator.XPLANE) {
+            return String.format("%d NM", torque);
+        }
         return String.format("%d%%", torque);
     }
 
-    //直升機
+    /**
+     * helicopter RPM
+     * @return helicopter RPM
+     */
     public int helicopterEngineRPM() {
         return helicopterEngineRPM;
     }
@@ -328,7 +360,10 @@ public abstract class FSBasic {
         return String.format("%d", helicopterEngineRPM);
     }
 
-    //進氣壓力
+    /**
+     * mainfold
+     * @return mainfold
+     */
     public double manifold() {
         return manifold;
     }
@@ -338,9 +373,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得 NAV1 頻率。
+     * NAV1 frequency
      *
-     * @return 傳回 NAV1 頻率。
+     * @return NAV1 frequency
      */
     public String navigateFrequency() {
         return navigateFrequency;
@@ -351,9 +386,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得 NAV1 ID。
+     * NAV1 ID。
      *
-     * @return 傳回 NAV1 ID。
+     * @return NAV1 ID
      */
     public String navigateID() {
         return navigateID;
@@ -364,9 +399,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得 NAV1 名稱。
+     * NAV1 name。
      *
-     * @return 傳回 NAV1 名稱。
+     * @return NAV1 name
      */
     public String navigateName() {
         return navigateName;
@@ -377,9 +412,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得 NAV1-Localizer Needle。
+     * NAV1-Localizer Needle。
      *
-     * @return 傳回 NAV1-Localizer Needle。
+     * @return NAV1-Localizer Needle
      */
     public double localizerDev() {
         return localizerDev;
@@ -390,9 +425,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得 NAV1-Glideslope Needle。
+     * NAV1-Glideslope Needle。
      *
-     * @return 傳回 NAV1-Glideslope Needle。
+     * @return NAV1-Glideslope Needle
      */
     public double glideslopeDev() {
         return glideslopeDev;
@@ -403,9 +438,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得 DME Distance。
+     * DME Distance
      *
-     * @return 傳回 DME Distance。
+     * @return DME Distance
      */
     public String dme() {
         return dme;
@@ -416,10 +451,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得緯度（Latitude）。 根據說明文件所述，必須使用 64 bit 的整數變數來儲存從 FSUIPC 得到的值，因此 程式中是使用
-     * getLong ，之後再將其轉型為 double。
+     * Latitude
      *
-     * @return 傳回飛機的緯度。
+     * @return latitue
      */
     public double latitude() {
         return latitude;
@@ -435,10 +469,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得經度（Longitude）。 根據說明文件所述，必須使用 64 bit 的整數變數來儲存從 FSUIPC 得到的值，因此 程式中是使用
-     * getLong ，之後再將其轉型為 double。
+     * Longitude
      *
-     * @return 傳回飛機的緯度。
+     * @return longitude
      */
     public double longitude() {
         return longitude;
@@ -464,9 +497,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得飛行高度（Altitude）。 此版本只有取得分行高度資訊中小數點以上的資訊，而忽略小數點以下的資訊。
+     * Altitude
      *
-     * @return 傳回飛機的飛行高度。
+     * @return altitude m
      */
     public double altitude() {
         return altitude;
@@ -483,9 +516,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得地面標高（Ground Altitude）。
+     * Ground Altitude
      *
-     * @return 傳回地面標高。
+     * @return ground altitude m
      */
     public double groudAltitude() {
         return groundAltitude;
@@ -504,9 +537,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得儀表空速（Indicated Air Speed）。
+     * Indicated Air Speed
      *
-     * @return 傳回儀表空速 (浬/時)。
+     * @return  Indicated Air Speed knot
      */
     public double indicatedAirSpeed() {
         return indicatedAirSpeed;
@@ -517,9 +550,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得真實空速（True Air Speed）。
+     * True Air Speed
      *
-     * @return 傳回真實空速 (浬/時)。
+     * @return True Air Speed knot
      */
     public double trueAirSpeed() {
         return trueAirSpeed;
@@ -530,9 +563,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得對地速度（Ground Speed）。
+     * Ground Speed
      *
-     * @return 傳回對地速度 (浬/時)。
+     * @return Ground Speed knot
      */
     public double groundSpeed() {
         return groundSpeed;
@@ -547,9 +580,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得垂直速度（Vertical Speed）。
+     * Vertical Speed
      *
-     * @return 傳回垂直速度 (呎/分)。
+     * @return Vertical Speed feet/min
      */
     public double verticalSpeed() {
         return verticalSpeed;
@@ -564,18 +597,18 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得風速（Wind Speed）。
+     * Wind Speed
      *
-     * @return 傳回風速 (浬/時)。
+     * @return Wind Speed mile/hour
      */
     public double windSpeed() {
         return windSpeed;
     }
 
     /**
-     * 取得風向（Wind Direction）。
+     * Wind Direction
      *
-     * @return 傳回風向。
+     * @return Wind Direction
      */
     public double windDirection() {
         return windDirection;
@@ -590,9 +623,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得馬赫數（Mach Speed）。
+     * Mach Speed
      *
-     * @return 傳回馬赫數。
+     * @return Mach Speed
      */
     public double machSpeed() {
         return machSpeed;
@@ -603,9 +636,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得 G 值（G Force）。
+     * G Force
      *
-     * @return 傳回 G 值。
+     * @return G Force
      */
     public double gForce() {
         return gForce;
@@ -616,9 +649,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得升降舵桿位（Elevator Control）。
+     * Elevator Control
      *
-     * @return 回傳升降舵桿位。
+     * @return Elevator Control %
      */
     public int elevatorControl() {
         return elevatorControl;
@@ -629,9 +662,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得升降舵位置（Elevator Deflection）。
+     * Elevator Deflection
      *
-     * @return 回傳升降舵位置。
+     * @return Elevator Deflection %
      */
     public int elevatorDeflection() {
         return elevatorDeflection;
@@ -642,23 +675,25 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得升降舵配平（Elevator Trim Control）。
+     * Elevator Trim Control
      *
-     * @return 回傳升降舵配平。
+     * @return Elevator Trim Control %
      */
     public double elevatorTrimControl() {
         return elevatorTrimControl;
     }
 
     public String getElevatorTrimControl() {
-        if (simulator == Simulator.XPLANE) return String.format("%.1f%%", elevatorTrimControl);
+        if (simulator == Simulator.XPLANE) {
+            return String.format("%.1f%%", elevatorTrimControl);
+        }
         return String.format("%.1f度", elevatorTrimControl);
     }
 
     /**
-     * 取得副翼桿位（Aileron Control）。
+     * Aileron Control
      *
-     * @return 回傳副翼桿位。
+     * @return Aileron Control %
      */
     public int aileronControl() {
         return aileronControl;
@@ -669,9 +704,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得副翼位置（Aileron Deflection）。
+     * Aileron Deflection
      *
-     * @return 回傳副翼位置。
+     * @return Aileron Deflection degree
      */
     public int aileronDeflection() {
         return aileronDeflection;
@@ -682,23 +717,25 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得副翼配平桿位（Aileron Trim Control）。
+     * Aileron Trim Control
      *
-     * @return 回傳副翼配平桿位。
+     * @return Aileron Trim Control degree
      */
     public double aileronTrimControl() {
         return aileronTrimControl;
     }
 
     public String getAileronTrimControl() {
-        if (simulator == Simulator.XPLANE) return String.format("%.1f%%", aileronTrimControl);
+        if (simulator == Simulator.XPLANE) {
+            return String.format("%.1f%%", aileronTrimControl);
+        }
         return String.format("%.1f度", aileronTrimControl);
     }
 
     /**
-     * 取得方向舵桿位（Rudder Control）。
+     * Rudder Control
      *
-     * @return 回傳方向舵桿位。
+     * @return Rudder Control %
      */
     public int rudderControl() {
         return rudderControl;
@@ -709,9 +746,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得方向舵位置（Rudder Deflection）。
+     * Rudder Deflection
      *
-     * @return 回傳方向舵位置。
+     * @return Rudder Deflection degree
      */
     public int rudderDeflection() {
         return rudderDeflection;
@@ -722,32 +759,34 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得方向舵配平位置（Rudder Trim Control）。
+     * Rudder Trim Control
      *
-     * @return 回傳方向舵配平。
+     * @return Rudder Trim Control %
      */
     public double rudderTrimControl() {
         return rudderTrimControl;
     }
 
     public String getRudderTrimControl() {
-        if (simulator == Simulator.XPLANE) return String.format("%.1f%%", rudderTrimControl);
+        if (simulator == Simulator.XPLANE) {
+            return String.format("%.1f%%", rudderTrimControl);
+        }
         return String.format("%.1f度", rudderTrimControl);
     }
 
     /**
-     * 取得副翼配平位置（Aileron Trim Deflection）。
+     * Aileron Trim Deflection
      *
-     * @return 回傳副翼配平桿位。
+     * @return Aileron Trim Deflection
      */
     public int aileronTrimDeflection() {
         return aileronTrimDeflection;
     }
 
     /**
-     * 取得起落架桿位（Gear Control）。
+     * Gear Control
      *
-     * @return 傳回起落架桿位。
+     * @return Gear Control
      */
     public String gearControl() {
         return gearControl;
@@ -758,9 +797,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得起落架位置（Gear position）。
+     * Gear position
      *
-     * @return 傳回起落架位置。
+     * @return Gear position
      */
     public String gearPosition() {
         return gearPosition;
@@ -771,9 +810,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得襟翼桿位（Flaps Control）。
+     * Flaps Control
      *
-     * @return 傳回襟翼桿位。
+     * @return Flaps Control %
      */
     public int flapsControl() {
         return flapsControl;
@@ -784,9 +823,9 @@ public abstract class FSBasic {
     }
 
     /**
-     * 取得襟翼位置（Flaps Deflection）。
+     * Flaps Deflection
      *
-     * @return 傳回襟翼位置。
+     * @return Flaps Deflection degree
      */
     public int flapsDeflection() {
         return flapsDeflection;
@@ -797,7 +836,7 @@ public abstract class FSBasic {
     }
 
     /**
-     * This function is use to output the first line record file
+     * This function is use to output the first line record file, the name of variable
      *
      * @return string of the first line output
      */
@@ -820,8 +859,7 @@ public abstract class FSBasic {
         for (MSFSDataEnum t : this.planeDataLt) {
             if (simulator == Simulator.XPLANE) {
                 buffer.append(t.getDes4());
-            }
-            else {
+            } else {
                 buffer.append(t.getDes2());
             }
         }
@@ -830,7 +868,7 @@ public abstract class FSBasic {
     }
 
     /**
-     * This function is used to generate record data
+     * This function is used to generate new line for record data
      *
      * @return string of the record file
      */
@@ -843,6 +881,12 @@ public abstract class FSBasic {
         return buffer.toString();
     }
 
+    /**
+     * get data of type for record data
+     *
+     * @param type comes from planeDataLt for plane type
+     * @return return the data of type value
+     */
     private Object getRawData(MSFSDataEnum type) {
         switch (type) {
             case LATITUDE:

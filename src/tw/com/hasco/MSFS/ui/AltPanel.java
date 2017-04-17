@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
  *
@@ -107,7 +108,7 @@ public class AltPanel extends javax.swing.JPanel {
         int x, y, x1, y1, x2, y2;
         x = (int) (0.4 * width);
         y = (int) (0.05 * height);
-        g2d.drawString("航機高度動畫圖", x, y);
+        g2d.drawString(LocaleManager.getInstance("Taiwan").getString("fig_plane_altitude"), x, y);
         g2d.drawString("Altitude Profile", x, y + fontSize);
         // draw y -axis
         x1 = (int) (0.1 * width);
@@ -150,9 +151,9 @@ public class AltPanel extends javax.swing.JPanel {
         // draw symbol
         x = (int) (0.04 * width);
         y = (int) (0.15 * height);
-         g2d.drawString("公尺", x, y);
+         g2d.drawString(LocaleManager.getInstance("Taiwan").getString("meter"), x, y);
          y=(int)  (0.1 * height);
-         g2d.drawString("高度", x, y);
+         g2d.drawString(LocaleManager.getInstance("Taiwan").getString("altitude"), x, y);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

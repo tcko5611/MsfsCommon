@@ -26,33 +26,33 @@ public class LlaPanel extends javax.swing.JPanel {
     }
 
     private void setLabelsTest() {
-        this.typeLabel.setText(LocaleManager.getInstance().getString("type"));
-        this.timeLabel.setText(LocaleManager.getInstance().getString("time"));
-        this.latitudeLabel.setText(LocaleManager.getInstance().getString("latitude"));
-        this.longitudeLabel.setText(LocaleManager.getInstance().getString("longitude"));
-        this.altitudeLabel.setText(LocaleManager.getInstance().getString("altitude"));
-        this.flyAltitudeLabel.setText(LocaleManager.getInstance().getString("flyAltitude"));
-        this.groundAltitudeLabel.setText(LocaleManager.getInstance().getString("groundAltitude"));
-        this.headingLabel.setText(LocaleManager.getInstance().getString("heading"));
-        this.pitchLabel.setText(LocaleManager.getInstance().getString("pitch"));
-        this.bankLabel.setText(LocaleManager.getInstance().getString("bank"));
-        this.magneticHeadingLabel.setText(LocaleManager.getInstance().getString("magneticHeading"));
-        this.aoaLabel.setText(LocaleManager.getInstance().getString("aoa"));
-        this.betaLabel.setText(LocaleManager.getInstance().getString("beta"));
-        this.indicatedAirSpeedLabel.setText(LocaleManager.getInstance().getString("indicatedAirSpeed"));
-        this.trueAirSpeedLabel.setText(LocaleManager.getInstance().getString("trueAirSpeed"));
-        this.machSpeedLabel.setText(LocaleManager.getInstance().getString("machSpeed"));
-        this.verticalSpeedLabel.setText(LocaleManager.getInstance().getString("verticalSpeed"));
-        this.gForceLabel.setText(LocaleManager.getInstance().getString("gForce"));
-        this.groundSpeedLabel.setText(LocaleManager.getInstance().getString("groundSpeed"));
-        this.windDirectionLabel.setText(LocaleManager.getInstance().getString("windDirection"));
-        this.windSpeedLabel.setText(LocaleManager.getInstance().getString("windSpeed"));
-        this.navigateFrequencyLabel.setText(LocaleManager.getInstance().getString("navigateFrequency"));
-        this.navigateIDLabel.setText(LocaleManager.getInstance().getString("navigateID"));
-        this.navigateNameLabel.setText(LocaleManager.getInstance().getString("navigateName"));
-        this.localizerDevLabel.setText(LocaleManager.getInstance().getString("localizerDev"));
-        this.glideslopeDevLabel.setText(LocaleManager.getInstance().getString("glideslopeDev"));
-        this.dmeLabel.setText(LocaleManager.getInstance().getString("dme"));
+        this.typeLabel.setText(LocaleManager.getInstance("Taiwan").getString("type"));
+        this.timeLabel.setText(LocaleManager.getInstance("Taiwan").getString("time"));
+        this.latitudeLabel.setText(LocaleManager.getInstance("Taiwan").getString("latitude"));
+        this.longitudeLabel.setText(LocaleManager.getInstance("Taiwan").getString("longitude"));
+        this.altitudeLabel.setText(LocaleManager.getInstance("Taiwan").getString("altitude"));
+        this.flyAltitudeLabel.setText(LocaleManager.getInstance("Taiwan").getString("flyAltitude"));
+        this.groundAltitudeLabel.setText(LocaleManager.getInstance("Taiwan").getString("groundAltitude"));
+        this.headingLabel.setText(LocaleManager.getInstance("Taiwan").getString("heading"));
+        this.pitchLabel.setText(LocaleManager.getInstance("Taiwan").getString("pitch"));
+        this.bankLabel.setText(LocaleManager.getInstance("Taiwan").getString("bank"));
+        this.magneticHeadingLabel.setText(LocaleManager.getInstance("Taiwan").getString("magneticHeading"));
+        this.aoaLabel.setText(LocaleManager.getInstance("Taiwan").getString("aoa"));
+        this.betaLabel.setText(LocaleManager.getInstance("Taiwan").getString("beta"));
+        this.indicatedAirSpeedLabel.setText(LocaleManager.getInstance("Taiwan").getString("indicatedAirSpeed"));
+        this.trueAirSpeedLabel.setText(LocaleManager.getInstance("Taiwan").getString("trueAirSpeed"));
+        this.machSpeedLabel.setText(LocaleManager.getInstance("Taiwan").getString("machSpeed"));
+        this.verticalSpeedLabel.setText(LocaleManager.getInstance("Taiwan").getString("verticalSpeed"));
+        this.gForceLabel.setText(LocaleManager.getInstance("Taiwan").getString("gForce"));
+        this.groundSpeedLabel.setText(LocaleManager.getInstance("Taiwan").getString("groundSpeed"));
+        this.windDirectionLabel.setText(LocaleManager.getInstance("Taiwan").getString("windDirection"));
+        this.windSpeedLabel.setText(LocaleManager.getInstance("Taiwan").getString("windSpeed"));
+        this.navigateFrequencyLabel.setText(LocaleManager.getInstance("Taiwan").getString("navigateFrequency"));
+        this.navigateIDLabel.setText(LocaleManager.getInstance("Taiwan").getString("navigateID"));
+        this.navigateNameLabel.setText(LocaleManager.getInstance("Taiwan").getString("navigateName"));
+        this.localizerDevLabel.setText(LocaleManager.getInstance("Taiwan").getString("localizerDev"));
+        this.glideslopeDevLabel.setText(LocaleManager.getInstance("Taiwan").getString("glideslopeDev"));
+        this.dmeLabel.setText(LocaleManager.getInstance("Taiwan").getString("dme"));
     }
 
     /**

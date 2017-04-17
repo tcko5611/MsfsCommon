@@ -51,10 +51,10 @@ public enum MSFSDataEnum {
     HOUR("時", "hour", "HOUR", "hour"),
     MIN("分", "minute", "MIN", "minute"),
     SEC("秒","second","SEC", "second");
-    private final String des1;
-    private final String des2;
-    private final String des3;
-    private final String des4;
+    private final String des1; /** chinese name */
+    private final String des2; /** name*/
+    private final String des3; /** name */
+    private final String des4; /** name */
     private MSFSDataEnum(String des1, String des2, String des3, String des4) {
         this.des1 = des1;
         this.des2 = des2;

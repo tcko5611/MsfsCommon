@@ -6,7 +6,7 @@
 package tw.com.hasco.MSFS.FS;
 
 /**
- *
+ * define fs file exception
  * @author DELL
  */
 public class FSFileException extends Exception {

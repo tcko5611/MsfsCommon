@@ -44,7 +44,7 @@
                   <Component id="rollPanel" max="32767" attributes="0"/>
                   <Component id="pitchPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -56,31 +56,31 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="pitchLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="pitchPanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="pitchPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="rollPanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="rollPanel" max="32767" attributes="0"/>
                   <Component id="rollLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="yawPanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="yawPanel" max="32767" attributes="0"/>
                   <Component id="yawLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="altPanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="altPanel" max="32767" attributes="0"/>
                   <Component id="altLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="aoaPanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="aoaPanel" max="32767" attributes="0"/>
                   <Component id="aoaLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="betaPanel" min="-2" max="-2" attributes="0"/>
+                  <Component id="betaPanel" max="32767" attributes="0"/>
                   <Component id="betaLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>

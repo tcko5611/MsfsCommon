@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JSlider;
 import tw.com.hasco.MSFS.FS.FSBasic;
 import tw.com.hasco.MSFS.Observer;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
  *
@@ -25,9 +26,18 @@ public class ThreeDFrame extends javax.swing.JFrame implements Observer {
         initComponents();
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);        
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
-        this.setTitle("Map 3D航跡圖");
+        this.setTitle(LocaleManager.getInstance("Taiwan").getString("figThreeD"));
+        updateWidgetName();
     }
-
+private void updateWidgetName() {
+    LocaleManager l = LocaleManager.getInstance("Taiwan");
+    this.dynMapCheckBox.setText(l.getString("dynMap"));
+    this.bigButton.setText(l.getString("zoomIn"));
+    this.smallButton.setText(l.getString("zoomOut"));
+    this.clearButton.setText(l.getString("clearData"));
+    this.periodLabel.setText(l.getString("period"));
+    this.secLabel.setText(l.getString("sec"));
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,28 +48,39 @@ public class ThreeDFrame extends javax.swing.JFrame implements Observer {
     private void initComponents() {
 
         threeDPanel = new tw.com.hasco.MSFS.ui.ThreeDPanel();
+        jPanel1 = new javax.swing.JPanel();
+        dynMapCheckBox = new javax.swing.JCheckBox();
         bigButton = new javax.swing.JButton();
         smallButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        degreeTextField = new javax.swing.JTextField();
-        jSlider1 = new javax.swing.JSlider();
         clearButton = new javax.swing.JButton();
+        periodLabel = new javax.swing.JLabel();
+        degreeTextField = new javax.swing.JTextField();
+        secLabel = new javax.swing.JLabel();
+        jSlider1 = new javax.swing.JSlider();
         jSlider2 = new javax.swing.JSlider();
-        jLabel5 = new javax.swing.JLabel();
-        dynMapCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        threeDPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout threeDPanelLayout = new javax.swing.GroupLayout(threeDPanel);
         threeDPanel.setLayout(threeDPanelLayout);
         threeDPanelLayout.setHorizontalGroup(
             threeDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 510, Short.MAX_VALUE)
+            .addGap(0, 562, Short.MAX_VALUE)
         );
         threeDPanelLayout.setVerticalGroup(
             threeDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        dynMapCheckBox.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
+        dynMapCheckBox.setText("動態地圖");
+        dynMapCheckBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                dynMapCheckBoxItemStateChanged(evt);
+            }
+        });
 
         bigButton.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
         bigButton.setText("放大");
@@ -77,8 +98,16 @@ public class ThreeDFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
-        jLabel4.setText("間隔");
+        clearButton.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
+        clearButton.setText("清除資料");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+
+        periodLabel.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
+        periodLabel.setText("間隔");
 
         degreeTextField.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
         degreeTextField.setText("5");
@@ -89,6 +118,9 @@ public class ThreeDFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
+        secLabel.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
+        secLabel.setText("秒");
+
         jSlider1.setMaximum(45);
         jSlider1.setMinimum(15);
         jSlider1.setOrientation(javax.swing.JSlider.VERTICAL);
@@ -96,14 +128,6 @@ public class ThreeDFrame extends javax.swing.JFrame implements Observer {
         jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSlider1StateChanged(evt);
-            }
-        });
-
-        clearButton.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
-        clearButton.setText("清除資料");
-        clearButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearButtonActionPerformed(evt);
             }
         });
 
@@ -116,48 +140,35 @@ public class ThreeDFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
-        jLabel5.setText("秒");
-
-        dynMapCheckBox.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
-        dynMapCheckBox.setText("動態地圖");
-        dynMapCheckBox.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                dynMapCheckBoxItemStateChanged(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(threeDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dynMapCheckBox)
                     .addComponent(bigButton)
                     .addComponent(smallButton)
                     .addComponent(clearButton)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(periodLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(degreeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5))))
-                    .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dynMapCheckBox))
-                .addContainerGap(15, Short.MAX_VALUE))
+                            .addComponent(degreeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(secLabel))
+                    .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(dynMapCheckBox)
+                .addComponent(dynMapCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bigButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -165,17 +176,34 @@ public class ThreeDFrame extends javax.swing.JFrame implements Observer {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(clearButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(periodLabel)
                     .addComponent(degreeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(106, 106, 106)
+                    .addComponent(secLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(threeDPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 17, Short.MAX_VALUE))
+                    .addComponent(threeDPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -260,6 +288,7 @@ public class ThreeDFrame extends javax.swing.JFrame implements Observer {
         //</editor-fold>
 
         /* Create and display the form */
+        LocaleManager l = LocaleManager.getInstance("China");
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override            
             public void run() {
@@ -273,10 +302,11 @@ public class ThreeDFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton clearButton;
     private javax.swing.JTextField degreeTextField;
     private javax.swing.JCheckBox dynMapCheckBox;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JSlider jSlider2;
+    private javax.swing.JLabel periodLabel;
+    private javax.swing.JLabel secLabel;
     private javax.swing.JButton smallButton;
     private tw.com.hasco.MSFS.ui.ThreeDPanel threeDPanel;
     // End of variables declaration//GEN-END:variables

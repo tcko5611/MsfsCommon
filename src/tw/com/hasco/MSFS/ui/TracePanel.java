@@ -159,7 +159,7 @@ double mouseLng;
 
     private void addMap(String name) {
         LocalMap map = new LocalMap(name);
-        map.setXY(400, 400, cy - r, cy + r, cx - r, cx + r);
+        map.setXY(getWidth(), getHeight(), cy - r, cy + r, cx - r, cx + r);
         maps.add(map);
     }
 
@@ -194,7 +194,7 @@ double mouseLng;
 
     private void addPort(String name) {
         AirPorts ports = new AirPorts(name);
-        ports.setXY(400, 400, cy - r, cy + r, cx - r, cx + r);
+        ports.setXY(getWidth(), getHeight(), cy - r, cy + r, cx - r, cx + r);
         airports.add(ports);
     }
 
@@ -228,7 +228,7 @@ double mouseLng;
 
     private void addAidz(String name) {
         Aidzs aidz = new Aidzs(name);
-        aidz.setXY(400, 400, cy - r, cy + r, cx - r, cx + r);
+        aidz.setXY(getWidth(), getHeight(), cy - r, cy + r, cx - r, cx + r);
         aidzs.add(aidz);
     }
 
@@ -279,6 +279,11 @@ double mouseLng;
                 formMousePressed(evt);
             }
         });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -304,6 +309,11 @@ double mouseLng;
         ToolTipManager.sharedInstance().setInitialDelay(0) ;        
         System.out.println(mouseLat + "," + mouseLng);//these co-ords are relative to the component
     }//GEN-LAST:event_formMousePressed
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        // TODO add your handling code here:
+        updateDrawPtsAndRepaint();
+    }//GEN-LAST:event_formComponentResized
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
@@ -438,13 +448,13 @@ double mouseLng;
     private void updateDrawPts() {
         // calculateTaiwanPts();
         maps.forEach((m) -> {
-            m.setXY(400, 400, cy - r, cy + r, cx - r, cx + r);
+            m.setXY(getWidth(), getHeight(), cy - r, cy + r, cx - r, cx + r);
         });
         airports.forEach((m) -> {
-            m.setXY(400, 400, cy - r, cy + r, cx - r, cx + r);
+            m.setXY(getWidth(), getHeight(), cy - r, cy + r, cx - r, cx + r);
         });
         aidzs.forEach((m) -> {
-            m.setXY(400, 400, cy - r, cy + r, cx - r, cx + r);
+            m.setXY(getWidth(), getHeight(), cy - r, cy + r, cx - r, cx + r);
         });
         calculateTracePts();
     }
@@ -520,13 +530,13 @@ double mouseLng;
         tracePts.clear();
         // calculateTaiwanPts();
         maps.forEach((m) -> {
-            m.setXY(400, 400, cy - r, cy + r, cx - r, cx + r);
+            m.setXY(getWidth(), getHeight(), cy - r, cy + r, cx - r, cx + r);
         });
         airports.forEach((m) -> {
-            m.setXY(400, 400, cy - r, cy + r, cx - r, cx + r);
+            m.setXY(getWidth(), getHeight(), cy - r, cy + r, cx - r, cx + r);
         });
         aidzs.forEach((m) -> {
-            m.setXY(400, 400, cy - r, cy + r, cx - r, cx + r);
+            m.setXY(getWidth(), getHeight(), cy - r, cy + r, cx - r, cx + r);
         });
         repaint();
     }

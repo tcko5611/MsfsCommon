@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import tw.com.hasco.MSFS.FS.FSBasic;
 import tw.com.hasco.MSFS.Observer;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
  *
@@ -27,7 +28,7 @@ public class CtrlFrame extends javax.swing.JFrame implements Observer {
         initComponents();
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
-        this.setTitle("飛行員操控與飛機狀態");
+        this.setTitle(LocaleManager.getInstance("Taiwan").getString("fig_ctrl"));
         // this.setResizable(false);
     }
 

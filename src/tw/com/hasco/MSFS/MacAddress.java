@@ -11,11 +11,14 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 /**
- *
+ * mac number utility
  * @author DELL
  */
 public class MacAddress {
-
+/**
+ * gep mac ip
+ * @return mac ip string
+ */
     static public String getIpMacAddress() {
         InetAddress ip;
         try {
@@ -32,6 +35,11 @@ public class MacAddress {
         }
         return "";
     }
+    /**
+     * get mac number
+     * @return mac number 
+     * @throws SocketException 
+     */
     public static String getMacAddress() throws SocketException {
         java.util.Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
         while (en.hasMoreElements()) {

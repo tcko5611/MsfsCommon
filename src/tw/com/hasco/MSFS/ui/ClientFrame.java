@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 import tw.com.hasco.MSFS.network.MsfsUdpClient;
 import tw.com.hasco.MSFS.network.MsfsUdpServer;
 
@@ -32,7 +33,7 @@ public class ClientFrame extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
-        setTitle("傳送資料");
+        setTitle(LocaleManager.getInstance("Taiwan").getString("fig_client"));
         ip = "192.168.31.133";
         port = 54947;
     }

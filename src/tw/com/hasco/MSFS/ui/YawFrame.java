@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import tw.com.hasco.MSFS.FS.FSBasic;
 import tw.com.hasco.MSFS.Observer;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
  *
@@ -23,7 +24,7 @@ public class YawFrame extends javax.swing.JFrame implements Observer {
         initComponents();
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
-        this.setTitle("Yaw 方向姿態");
+        this.setTitle(LocaleManager.getInstance("Taiwan").getString("figYaw"));
         // this.setResizable(false);
     }
 
@@ -55,11 +56,11 @@ public class YawFrame extends javax.swing.JFrame implements Observer {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plotTopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(plotTopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plotTopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(plotTopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -92,7 +93,7 @@ public class YawFrame extends javax.swing.JFrame implements Observer {
         }
         //</editor-fold>
         //</editor-fold>
-
+        LocaleManager l = LocaleManager.getInstance("China");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new YawFrame().setVisible(true);

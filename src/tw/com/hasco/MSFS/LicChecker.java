@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
+ * license check class, decerypt the license file and get license results
  *
  * @author DELL
  */
@@ -91,6 +92,12 @@ public class LicChecker {
     static final int V3_SASIA = 4;
     static final int V4_PAC = 8;
     static final int V5_USA = 16;
+
+    // language
+    int lic_lang;
+    static final int L1_TW = 1;
+    static final int L2_CN = 2;
+
     // end of license file
     // informations
     String licStr;
@@ -99,7 +106,9 @@ public class LicChecker {
     String expireDate;
     String macNum;
 
-    // for sugnleton, constructor must private
+    /**
+     * sigleton class for set constructor for private
+     */
     private LicChecker() {
         lic_g = 0;
         lic_s = 0;
@@ -110,9 +119,15 @@ public class LicChecker {
         lic_t = 0;
         lic_u = 0;
         lic_v = 0;
+        lic_lang = 0;
         checkLic();
     }
 
+    /**
+     * sigleton instance function, parse the license file
+     *
+     * @return the sigleton
+     */
     public static LicChecker getInstance() {
         if (instance == null) {
             instance = new LicChecker();
@@ -120,31 +135,56 @@ public class LicChecker {
         return instance;
     }
 
+    /**
+     * get user name
+     *
+     * @return user name
+     */
     public String getUser() {
         return user;
     }
 
+    /**
+     * get purchase date
+     *
+     * @return purcahse date
+     */
     public String getPurchaseDate() {
         return purchaseDate;
     }
 
+    /**
+     * get expire date
+     *
+     * @return expire date
+     */
     public String getExpireDate() {
         return expireDate;
     }
 
+    /**
+     * get mac num
+     *
+     * @return mac num
+     */
     public String getMacNum() {
         return macNum;
     }
 
+    /**
+     * parse the license file and encrypt it, get all information
+     */
     private void checkLic() {
         try {
             BufferedReader in = new BufferedReader(new FileReader("license.txt"));
             String str = in.readLine();
-            if (str == null) return;
+            if (str == null) {
+                return;
+            }
             str = Decryptor.decrypt(str);
             String[] strs = str.split(":");
-            if (strs.length != 14) {
-                JOptionPane.showMessageDialog(null, LocaleManager.getInstance().getString("licenseFileError"),
+            if (strs.length != 15) {
+                JOptionPane.showMessageDialog(null, LocaleManager.getInstance("Taiwan").getString("licenseFileError"),
                         "license file error", JOptionPane.INFORMATION_MESSAGE);
             }
             if (strs[2].substring(0, 4).equals("9999")) {
@@ -158,7 +198,7 @@ public class LicChecker {
             macNum = strs[3];
 
             Date currentDate = new Date();
-            Date lastDate = this.dateFormat.parse(strs[13]);
+            Date lastDate = this.dateFormat.parse(strs[14]);
             if (lastDate.after(currentDate)) {
                 Debugger.log("Date is not correct in your machine");
                 JOptionPane.showMessageDialog(null, "Date is not correct in your machine", "License", JOptionPane.ERROR_MESSAGE);
@@ -182,14 +222,15 @@ public class LicChecker {
                 lic_d = Integer.parseInt(strs[9]);
                 lic_t = Integer.parseInt(strs[10]);
                 lic_u = Integer.parseInt(strs[11]);
-                lic_v = Integer.parseInt(strs[11]);
+                lic_v = Integer.parseInt(strs[12]);
+                lic_lang = Integer.parseInt(strs[13]);
                 Debugger.log(lic_g);
 
                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("license.txt")));
                 str = strs[0] + ":" + strs[1] + ":" + strs[2] + ":" + strs[3]
                         + ":" + strs[4] + ":" + strs[5] + ":" + strs[6] + ":"
                         + strs[7] + ":" + strs[8] + ":" + strs[9] + ":"
-                        + strs[10] + ":" + strs[11] + ":" + strs[12] + ":"
+                        + strs[10] + ":" + strs[11] + ":" + strs[12] + ":" + strs[13] + ":"
                         + dateFormat.format(currentDate);
                 out.println(Decryptor.encrypt(str));
                 Debugger.log("out:" + str);
@@ -199,149 +240,315 @@ public class LicChecker {
                 JOptionPane.showMessageDialog(null, "License File Error", "License", JOptionPane.ERROR_MESSAGE);
             }
 
-        } catch (HeadlessException | IOException | NumberFormatException | ParseException  | NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, LocaleManager.getInstance().getString("licenseFileError"), "license file error", JOptionPane.INFORMATION_MESSAGE);
+        } catch (HeadlessException | IOException | NumberFormatException | ParseException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, LocaleManager.getInstance("Taiwan").getString("licenseFileError"), "license file error", JOptionPane.INFORMATION_MESSAGE);
         } finally {
         }
     }
 
+    /**
+     * get LLA enable status
+     *
+     * @return LLA
+     */
     public boolean isG1_LLA() {
         return ((lic_g & G1_LLA) != 0);
     }
 
+    /**
+     * get CTRL enable status
+     *
+     * @return CTRL
+     */
     public boolean isG2_CTRL() {
         return ((lic_g & G2_CTRL) != 0);
     }
 
+    /**
+     * get PITCH enable status
+     *
+     * @return PITCH
+     */
     public boolean isG3_PITCH() {
         return ((lic_g & G3_PITCH) != 0);
     }
 
+    /**
+     * get ROLL enable status
+     *
+     * @return ROLL
+     */
     public boolean isG4_ROLL() {
         return ((lic_g & G4_ROLL) != 0);
     }
 
+    /**
+     * get YAW enable status
+     *
+     * @return YAW
+     */
     public boolean isG5_YAW() {
         return ((lic_g & G5_YAW) != 0);
     }
 
+    /**
+     * get PLANE enable status
+     *
+     * @return PLANE
+     */
     public boolean isG6_PLANE() {
         return ((lic_g & G6_PLANE) != 0);
     }
 
+    /**
+     * get ALT enable status
+     *
+     * @return ALT
+     */
     public boolean isG7_ALT() {
         return ((lic_g & G7_ALT) != 0);
     }
 
+    /**
+     * get THREED enable status
+     *
+     * @return THREED
+     */
     public boolean isG8_THREED() {
         return ((lic_g & G8_THREED) != 0);
     }
+
+    /**
+     * get PLOT6 enable status
+     *
+     * @return PLOT6
+     */
     public boolean isG9_PLOT6() {
         return ((lic_g & G9_PLOT6) != 0);
     }
     // Simulator
 
+    /**
+     * get FSX enable status
+     *
+     * @return FSX
+     */
     public boolean isS1_FSX() {
         return ((lic_s & S1_FSX) != 0);
     }
 
+    /**
+     * get XPLANE enable status
+     *
+     * @return XPLANE
+     */
     public boolean isS2_XPLANE() {
         return ((lic_s & S2_XPLANE) != 0);
     }
 
+    /**
+     * get MODEL enable status
+     *
+     * @return MODEL
+     */
     public boolean isS3_MODEL() {
         return ((lic_s & S3_MODEL) != 0);
     }
 
+    /**
+     * get DOF3 enable status
+     *
+     * @return DOF3
+     */
     public boolean isS4_DOF3() {
         return ((lic_s & S4_DOF3) != 0);
     }
 
+    /**
+     * get DOF6 enable status
+     *
+     * @return DOF6
+     */
     public boolean isS5_DOF6() {
         return ((lic_s & S5_DOF6) != 0);
     }
 
-    // TODO add your handling code here:
+    /**
+     * get REFLY enable status
+     *
+     * @return REFLY
+     */
     public boolean isR1_REFLY() {
         return ((lic_r & R1_REFLY) != 0);
     }
 
+    /**
+     * get RECORD enable status
+     *
+     * @return RECORD
+     */
     public boolean isR2_RECORD() {
         return ((lic_r & R2_RECORD) != 0);
     }
 
+    /**
+     * get PLAY enable status
+     *
+     * @return PLAY
+     */
     public boolean isR3_PLAY() {
         return ((lic_r & R3_PLAY) != 0);
     }
-    // for map 
 
+    /**
+     * get SELFPORT enable status
+     *
+     * @return SELFPORT
+     */
     public boolean isM1_SELFPORT() {
         return ((lic_m & M1_SELFPORT) != 0);
     }
 
+    /**
+     * get SELF2DMAP enable status
+     *
+     * @return SELF2DMAP
+     */
     public boolean isM2_SELF2DMAP() {
         return ((lic_m & M2_SELF2DMAP) != 0);
     }
 
+    /**
+     * get SELF3DBUIL enable status
+     *
+     * @return SELF3DBUIL
+     */
     public boolean isM3_SELF3DBUIL() {
         return ((lic_m & M3_SELF3DBUIL) != 0);
     }
 
+    /**
+     * get COORMAP enable status
+     *
+     * @return COORMAP
+     */
     public boolean isM4_COORMAP() {
         return ((lic_m & M4_COORMAP) != 0);
     }
 
+    /**
+     * get MARK enable status
+     *
+     * @return MARK
+     */
     public boolean isM5_MARK() {
         return ((lic_m & M5_MARK) != 0);
     }
 
-    // aviation
+    /**
+     * get PHYMATH enable status
+     *
+     * @return PHYMATH
+     */
     public boolean isA1_PHYMATH() {
         return ((lic_a & A1_PHYMATH) != 0);
     }
 
+    /**
+     * get AIRDYN enable status
+     *
+     * @return AIRDYN
+     */
     public boolean isA2_AIRDYN() {
         return ((lic_a & A2_AIRDYN) != 0);
     }
 
+    /**
+     * get FLYTRAIN enable status
+     *
+     * @return FLYTRAIN
+     */
     public boolean isA3_FLYTRAIN() {
         return ((lic_a & A3_FLYTRAIN) != 0);
     }
 
+    /**
+     * get FLYQUAL enable status
+     *
+     * @return FLYQUAL
+     */
     public boolean isA4_FLYQUAL() {
         return ((lic_a & A4_FLYQUAL) != 0);
     }
 
+    /**
+     * get FLYCHK enable status
+     *
+     * @return FLYCHK
+     */
     public boolean isA5_FLYCHK() {
         return ((lic_a & A5_FLYCHK) != 0);
     }
-    // defence
 
+    /**
+     * get ENESHIP enable status
+     *
+     * @return ENESHIP
+     */
     public boolean isD1_ENESHIP() {
         return ((lic_d & D1_ENESHIP) != 0);
     }
 
+    /**
+     * get AIRPIC enable status
+     *
+     * @return AIRPIC
+     */
     public boolean isD2_AIRPIC() {
         return ((lic_d & D2_AIRPIC) != 0);
     }
-    // Area Data
 
+    /**
+     * get TWN enable status
+     *
+     * @return TWN
+     */
     public boolean isT1_TWN() {
         return ((lic_t & T1_TWN) != 0);
     }
 
+    /**
+     * get NASIA enable status
+     *
+     * @return NASIA
+     */
     public boolean isT2_NASIA() {
         return ((lic_t & T2_NASIA) != 0);
     }
 
+    /**
+     * get SASIA enable status
+     *
+     * @return SASIA
+     */
     public boolean isT3_SASIA() {
         return ((lic_t & T3_SASIA) != 0);
     }
 
+    /**
+     * get PAC enable status
+     *
+     * @return PAC
+     */
     public boolean isT4_PAC() {
         return ((lic_t & T4_PAC) != 0);
     }
 
+    /**
+     * get USA enable status
+     *
+     * @return USA
+     */
     public boolean isT5_USA() {
         return ((lic_t & T5_USA) != 0);
     }
@@ -386,6 +593,18 @@ public class LicChecker {
 
     public boolean isV5_USA() {
         return ((lic_v & V5_USA) != 0);
+    }
+
+    public int getLang() {
+        return lic_lang;
+    }
+
+    public int getLangTw() {
+        return L1_TW;
+    }
+
+    public int getLangCn() {
+        return L2_CN;
     }
 
     public String getLicInfo() {

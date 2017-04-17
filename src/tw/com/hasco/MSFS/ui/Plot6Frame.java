@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import tw.com.hasco.MSFS.FS.FSBasic;
 import tw.com.hasco.MSFS.Observer;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
  *
@@ -25,7 +26,7 @@ public class Plot6Frame extends javax.swing.JFrame implements Observer {
         initComponents();
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
-        this.setTitle("數值圖 Plot6");
+        this.setTitle(LocaleManager.getInstance("Taiwan").getString("fig_plot6"));
         setPanelInitVal();
     }
 
@@ -45,8 +46,8 @@ public class Plot6Frame extends javax.swing.JFrame implements Observer {
     }
 
     public void clearData() {
-        upTimePanel.clearData();
-        downTimePanel.clearData();
+        upPanel.clearData();
+        downPanel.clearData();
         pitchPanel.clearData();
         rollPanel.clearData();
         yawPanel.clearData();
@@ -65,78 +66,62 @@ public class Plot6Frame extends javax.swing.JFrame implements Observer {
     private void initComponents() {
 
         pitchPanel = new tw.com.hasco.MSFS.ui.Plot1Panel();
-        upTimePanel = new tw.com.hasco.MSFS.ui.UpTimePanel();
         rollPanel = new tw.com.hasco.MSFS.ui.Plot1Panel();
         yawPanel = new tw.com.hasco.MSFS.ui.Plot1Panel();
         altPanel = new tw.com.hasco.MSFS.ui.Plot1Panel();
         aoaPanel = new tw.com.hasco.MSFS.ui.Plot1Panel();
         betaPanel = new tw.com.hasco.MSFS.ui.Plot1Panel();
-        downTimePanel = new tw.com.hasco.MSFS.ui.DownTimePanel();
+        upPanel = new tw.com.hasco.MSFS.ui.UpPanel();
+        downPanel = new tw.com.hasco.MSFS.ui.DownPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout upTimePanelLayout = new javax.swing.GroupLayout(upTimePanel);
-        upTimePanel.setLayout(upTimePanelLayout);
-        upTimePanelLayout.setHorizontalGroup(
-            upTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        upTimePanelLayout.setVerticalGroup(
-            upTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
+        pitchPanel.setMinimumSize(new java.awt.Dimension(0, 0));
 
-        javax.swing.GroupLayout downTimePanelLayout = new javax.swing.GroupLayout(downTimePanel);
-        downTimePanel.setLayout(downTimePanelLayout);
-        downTimePanelLayout.setHorizontalGroup(
-            downTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        downTimePanelLayout.setVerticalGroup(
-            downTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 31, Short.MAX_VALUE)
-        );
+        rollPanel.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        yawPanel.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        altPanel.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        aoaPanel.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        betaPanel.setMinimumSize(new java.awt.Dimension(0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pitchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
                     .addComponent(rollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(yawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(altPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(aoaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pitchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(upTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(downTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(betaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(aoaPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(betaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(upPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(downPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(upTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(upPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pitchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pitchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(yawPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(yawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(altPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(altPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(aoaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(aoaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(betaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(downTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(betaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(downPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -172,6 +157,7 @@ public class Plot6Frame extends javax.swing.JFrame implements Observer {
         //</editor-fold>
 
         /* Create and display the form */
+        LocaleManager l = LocaleManager.getInstance("China");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Plot6Frame().setVisible(true);
@@ -183,10 +169,10 @@ public class Plot6Frame extends javax.swing.JFrame implements Observer {
     private tw.com.hasco.MSFS.ui.Plot1Panel altPanel;
     private tw.com.hasco.MSFS.ui.Plot1Panel aoaPanel;
     private tw.com.hasco.MSFS.ui.Plot1Panel betaPanel;
-    private tw.com.hasco.MSFS.ui.DownTimePanel downTimePanel;
+    private tw.com.hasco.MSFS.ui.DownPanel downPanel;
     private tw.com.hasco.MSFS.ui.Plot1Panel pitchPanel;
     private tw.com.hasco.MSFS.ui.Plot1Panel rollPanel;
-    private tw.com.hasco.MSFS.ui.UpTimePanel upTimePanel;
+    private tw.com.hasco.MSFS.ui.UpPanel upPanel;
     private tw.com.hasco.MSFS.ui.Plot1Panel yawPanel;
     // End of variables declaration//GEN-END:variables
 
@@ -197,8 +183,8 @@ public class Plot6Frame extends javax.swing.JFrame implements Observer {
         //     return;
         //}
         currTime = time;
-        upTimePanel.addData(currTime);
-        downTimePanel.addData(currTime);
+        upPanel.addData(currTime);
+        downPanel.addData(currTime);
         pitchPanel.addData(fsBasic.pitch());
         rollPanel.addData(fsBasic.bank());
         yawPanel.addData(fsBasic.heading());

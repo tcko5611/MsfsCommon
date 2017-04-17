@@ -129,7 +129,7 @@ public class LocalMap {
         }
     }
 
-    public void draw(Graphics2D g) {
+     public void draw(Graphics2D g) {
         if (xs.isEmpty()) {
             return;
         }

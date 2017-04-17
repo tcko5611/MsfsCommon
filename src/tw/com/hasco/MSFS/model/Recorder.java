@@ -16,7 +16,7 @@ import java.util.concurrent.Callable;
 import tw.com.hasco.MSFS.FS.FSBasic;
 
 /**
- *
+ * record class
  * @author DELL
  */
 public class Recorder implements Callable<String> {
@@ -28,6 +28,13 @@ public class Recorder implements Callable<String> {
     FSBasic fsBasic;
     PrintWriter out;
     boolean stop;
+    /**
+     * 
+     * @param name file name
+     * @param sec record sec period
+     * @param fs fs instnace
+     * @throws IOException comes from fs
+     */
     public Recorder(String name, double sec, FSBasic fs) throws IOException {
         fileName = name;
         sleepTime = (int) (sec *1000);

@@ -14,12 +14,17 @@ import tw.com.hasco.MSFS.model.MSFSDataEnum;
 import tw.com.hasco.MSFS.model.PlaneType;
 
 /**
- *
+ * FS for read from file
  * @author DELL
  */
 public class FSFile extends FSBasic{
-  
-
+/**
+ * constructor for read record file
+ * @param fileName file name
+ * @param planeType xplane or fs
+ * @throws FileNotFoundException if no file
+ * @throws IOException if file has problem
+ */
     public FSFile(String fileName, PlaneType planeType) throws FileNotFoundException, IOException {
         super(planeType);
         this.bufferedReader = new BufferedReader(new FileReader(fileName));
@@ -35,6 +40,9 @@ public class FSFile extends FSBasic{
     }
     
     @Override
+    /**
+     * called by user to update the data
+     */
     public void update() throws IOException, FSFileException {
         if (bufferedReader == null) throw new FSFileException("File over");
         String  line = this.bufferedReader.readLine();
@@ -45,7 +53,10 @@ public class FSFile extends FSBasic{
         }
         scanLineForData(line);
     }
-
+/**
+ * set data
+ * @param line data line to set data
+ */
     private void scanLineForData(String line) {
         line = line.replaceAll("\\s+", "");
         String[] fields = line.split(",");
@@ -61,7 +72,11 @@ public class FSFile extends FSBasic{
             setDataVal(t, val);
         }
     }
-
+/**
+ * set data from data line
+ * @param type the enum type
+ * @param val the val
+ */
     private void setDataVal(MSFSDataEnum type, String val) {
         switch (type) {
             case LATITUDE:

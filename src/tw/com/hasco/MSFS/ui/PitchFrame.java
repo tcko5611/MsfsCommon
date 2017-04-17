@@ -6,11 +6,10 @@ package tw.com.hasco.MSFS.ui;
  * and open the template in the editor.
  */
 import java.awt.Toolkit;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 import javax.swing.JFrame;
 import tw.com.hasco.MSFS.FS.FSBasic;
 import tw.com.hasco.MSFS.Observer;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
  *
@@ -25,7 +24,7 @@ public class PitchFrame extends javax.swing.JFrame implements Observer {
         initComponents();
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
-        this.setTitle("Pitch 俯仰姿態");
+        this.setTitle(LocaleManager.getInstance("Taiwan").getString("fig_pitch"));
         // this.setResizable(false);
     }
 
@@ -57,11 +56,11 @@ public class PitchFrame extends javax.swing.JFrame implements Observer {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plotThetaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(plotThetaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plotThetaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(plotThetaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
 
         pack();
@@ -102,14 +101,14 @@ public class PitchFrame extends javax.swing.JFrame implements Observer {
         //</editor-fold>
 
         /* Create and display the form */
+        LocaleManager l = LocaleManager.getInstance("China");
         PitchFrame plotThetaFrame = new PitchFrame();
         plotThetaFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         java.awt.EventQueue.invokeLater(() -> {            
                 plotThetaFrame.setVisible(true);
         });
-        Executor executor = Executors.newSingleThreadExecutor();
-        executor.execute(() -> {
-        });
+        
+        
 
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * plane type class for data enum list
  * @author DELL
  */
 public enum PlaneType {

@@ -24,11 +24,18 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 
 /**
+ * class for encrypt the license txt
  *
  * @author DELL
  */
 public class Decryptor {
 
+    /**
+     * encrypt str
+     *
+     * @param value input string
+     * @return encrypt string
+     */
     public static String encrypt(String value) {
         try {
             String key = "Bar12345Bar12345"; // 128 bit key
@@ -51,6 +58,12 @@ public class Decryptor {
         return null;
     }
 
+    /**
+     * decrypt str
+     *
+     * @param value input string
+     * @return decrypt string
+     */
     public static String decrypt(String encrypted) {
         try {
             String key = "Bar12345Bar12345"; // 128 bit key

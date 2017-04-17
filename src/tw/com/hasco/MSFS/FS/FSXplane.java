@@ -30,10 +30,21 @@ import static tw.com.hasco.MSFS.model.PlaneType.AIRCRAFT;
  * @author DELL
  */
 public class FSXplane extends FSBasic {
+
     static final int PORT = 54946;
+    /* port for receive data*/
     List<MSFSDataEnum> dataLt;
+    /* data list from data.txt */
     UdpServer udp;
-    // Calendar cal;
+
+    /* udp server, get data from xplane */
+
+    /**
+     * constructor
+     *
+     * @param planeType plane or helicopter
+     * @throws SocketException udp server error
+     */
     public FSXplane(PlaneType planeType) throws SocketException {
         super(planeType);
         simulator = Simulator.XPLANE;
@@ -43,29 +54,32 @@ public class FSXplane extends FSBasic {
         ExecutorService exec = Executors.newSingleThreadExecutor();
         exec.execute(udp);
     }
-   @Override
+
+    @Override
     public void setStop(boolean b) {
         stop = b;
         udp.close();
     }
+
+    /**
+     * build udp data sequence from data.txt
+     */
     final void buildDataLt() {
         try {
             dataLt = new LinkedList<>();
             BufferedReader br;
-            if (Debugger.isDebugBuild()) { 
-                br = new BufferedReader(new FileReader("c:/temp/data.txt"));
-            }
-            else {
-                ClassLoader classLoader = Test.class.getClassLoader();   
-                br = new BufferedReader(new InputStreamReader(
-                    classLoader.getResourceAsStream("file/data.txt")));    
-            }
+            ClassLoader classLoader = FSXplane.class.getClassLoader();
+            br = new BufferedReader(new InputStreamReader(
+                    classLoader.getResourceAsStream("file/data.txt")));
+
             for (String line = br.readLine(); line != null; line = br.readLine()) {
                 if (line.isEmpty() || line.charAt(0) != 's') {
                     continue;
                 }
                 String[] strs = line.split("\\s+");
-                if (strs.length != 3) continue;
+                if (strs.length != 3) {
+                    continue;
+                }
                 dataLt.add(PlaneType.getEnumFromString(strs[2]));
             }
         } catch (IOException ex) {
@@ -76,19 +90,25 @@ public class FSXplane extends FSBasic {
     @Override
     public void update() throws IOException {
         // flyAltitude = altitude - groundAltitude;
-        groundAltitude = altitude - flyAltitude; 
-        machSpeed = this.trueAirSpeed/(343.0 *3.6) *1.852;        
+        groundAltitude = altitude - flyAltitude;
+        machSpeed = this.trueAirSpeed / (343.0 * 3.6) * 1.852;
     }
 
+    /**
+     * for data sequence to set data
+     *
+     * @param type data name
+     * @param val data val
+     */
     private void setDataVal(MSFSDataEnum type, float val) {
         switch (type) {
             case TIME:
-                val = val/3600;
+                val = val / 3600;
                 hour = (int) (val);
                 val = (val - hour) * 60;
-                min = (int)(val);
-                val = (val -min) *60;
-                sec = (int) (val); 
+                min = (int) (val);
+                val = (val - min) * 60;
+                sec = (int) (val);
                 break;
             case LATITUDE:
                 this.latitude = val;
@@ -139,7 +159,7 @@ public class FSXplane extends FSBasic {
                 this.gForce = val;
                 break;
             case GROUND_SPEED:
-                this.groundSpeed = val*1.944;
+                this.groundSpeed = val * 1.944;
                 break;
             case WIND_DIRECTION:
                 this.windDirection = val;
@@ -148,13 +168,13 @@ public class FSXplane extends FSBasic {
                 this.windSpeed = val;
                 break;
             case THROTTLE_LEVEL:
-                this.throttleLevel = (int) (val*100);
+                this.throttleLevel = (int) (val * 100);
                 break;
             case PROP_LEVEL:
-                this.propLevel = (int) (val*30.0/3.14159);
+                this.propLevel = (int) (val * 30.0 / 3.14159);
                 break;
             case MIXTURE_LEVEL:
-                this.mixtureLevel = (int) (val*100);
+                this.mixtureLevel = (int) (val * 100);
                 break;
             case ENGINE_RPM:
                 this.engineRPM = (int) val;
@@ -166,25 +186,25 @@ public class FSXplane extends FSBasic {
                 this.torque = (int) val;
                 break;
             case ELEVATOR_CONTROL:
-                this.elevatorControl = (int) (val*100);
+                this.elevatorControl = (int) (val * 100);
                 break;
             case ELEVATOR_DEFLECTION:
                 this.elevatorDeflection = (int) (-1 * val);
                 break;
             case AILERON_CONTROL:
-                this.aileronControl = (int) (val*100);
+                this.aileronControl = (int) (val * 100);
                 break;
             case AILERON_DEFLECTION:
                 this.aileronDeflection = (int) val;
                 break;
             case RUDDER_CONTROL:
-                this.rudderControl = (int) (val*100);
+                this.rudderControl = (int) (val * 100);
                 break;
             case RUDDER_DEFLECTION:
                 this.rudderDeflection = (int) val;
                 break;
             case FLAPS_CONTROL:
-                this.flapsControl = (int) (val*100);
+                this.flapsControl = (int) (val * 100);
                 break;
             case FLAPS_DEFLECTION:
                 this.flapsDeflection = (int) val;
@@ -197,13 +217,13 @@ public class FSXplane extends FSBasic {
                 this.gearPosition = (val == 0.0) ? "up" : "down";
                 break;
             case ELEVATOR_TRIM_CONTROL:
-                this.elevatorTrimControl = (val*100);
+                this.elevatorTrimControl = (val * 100);
                 break;
             case RUDDER_TRIM_CONTROL:
-                this.rudderTrimControl = (val*100);
+                this.rudderTrimControl = (val * 100);
                 break;
             case AILERON_TRIM_CONTROL:
-                this.aileronTrimControl = (val*100);
+                this.aileronTrimControl = (val * 100);
                 break;
             /*
             case NAVIGATE_FREQUENCY:
@@ -252,6 +272,9 @@ public class FSXplane extends FSBasic {
         }
     }
 
+    /**
+     * class of udpserver
+     */
     public class UdpServer implements Runnable {
 
         int port;    // 連接埠
@@ -260,15 +283,27 @@ public class FSXplane extends FSBasic {
         DatagramSocket socket;
         DatagramPacket packet;
         byte[] data;
+
+        /**
+         * constructor
+         *
+         * @param pPort receive port
+         * @throws SocketException udp exception
+         */
         public UdpServer(int pPort) throws SocketException {
             port = pPort;                            // 設定連接埠。
             socket = new DatagramSocket(port);         // 設定接收的 UDP Socket.
             packet = new DatagramPacket(buffer, buffer.length);
             data = new byte[4];
         }
+
+        /**
+         * when stop close the socket
+         */
         public void close() {
             socket.close();
         }
+
         @Override
         public void run() {
             while (!stop) {
@@ -279,10 +314,12 @@ public class FSXplane extends FSBasic {
                 }
                 Debugger.log("msg:" + packet.getLength());
                 String str = "";
-                if (dataLt.size() != (int) (packet.getLength() / 4)) continue;
+                if (dataLt.size() != (int) (packet.getLength() / 4)) {
+                    continue;
+                }
                 ListIterator<MSFSDataEnum> it = dataLt.listIterator();
-                
-                for (int i = 0; i < dataLt.size(); ++i) {  
+
+                for (int i = 0; i < dataLt.size(); ++i) {
                     MSFSDataEnum type = it.next();
                     for (int j = 0; j < 4; ++j) {
                         data[j] = buffer[4 * i + 3 - j];
@@ -295,6 +332,7 @@ public class FSXplane extends FSBasic {
             }
         }
     }
+
     public static void main(String args[]) throws IOException {
         FSXplane fs = new FSXplane(AIRCRAFT);
     }

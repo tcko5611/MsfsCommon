@@ -450,7 +450,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="selfPort" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="sel3DBuil" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="self3DBuil" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="self2DMap" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="coorMap" min="-2" max="-2" attributes="0"/>
                       <Component id="mark" min="-2" max="-2" attributes="0"/>
@@ -466,7 +466,7 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="self2DMap" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="sel3DBuil" min="-2" max="-2" attributes="0"/>
+                  <Component id="self3DBuil" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="coorMap" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -495,7 +495,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="sel3DBuil">
+        <Component class="javax.swing.JCheckBox" name="self3DBuil">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
@@ -869,6 +869,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
             </Property>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="T5-&#x5317;&#x7f8e;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>

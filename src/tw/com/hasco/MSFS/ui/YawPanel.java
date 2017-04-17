@@ -19,6 +19,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import tw.com.hasco.MSFS.FS.FSBasic;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
  *
@@ -88,7 +89,7 @@ public class YawPanel extends javax.swing.JPanel {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-
+LocaleManager l = LocaleManager.getInstance("Taiwan");
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
@@ -105,13 +106,13 @@ public class YawPanel extends javax.swing.JPanel {
         // title string
         x = 0.05 * width;
         y = 0.05 * height;
-        g2d.drawString("方向操控姿態動畫 Yaw Control & Attitude Dynamic Graphic", (int) x, (int) y);
+        g2d.drawString(l.getString("yawPanelStr") + " Yaw Control & Attitude Dynamic Graphic", (int) x, (int) y);
         // symbol table
         x = 0.05 * width;
         y = 0.81 * height;
-        g2d.drawString("\u03B2:側滑角：" + (int)beta, (int) x, (int) y);
-        g2d.drawString("\u03C8:方位角：" + (int) heading, (int) x , (int) y + g.getFont().getSize() + 10);
-        g2d.drawString("\u03B4R:方向舵角：" + (int) rudderDeflection, (int) x, (int) y + 2 * g.getFont().getSize() + 20);
+        g2d.drawString("\u03B2:"+ l.getString("beta") + "：" + (int)beta, (int) x, (int) y);
+        g2d.drawString("\u03C8:" + l.getString("heading") + "：" + (int) heading, (int) x , (int) y + g.getFont().getSize() + 10);
+        g2d.drawString("\u03B4R:" + l.getString("rudderDeflection") + "：" + (int) rudderDeflection, (int) x, (int) y + 2 * g.getFont().getSize() + 20);
         // draw plane 
         double rcx = width / 2, rcy = height / 2 - planeHeight * 51 / 231; // rcx, rcy: rotation center
         double rot = Math.toRadians(beta);
@@ -192,7 +193,7 @@ public class YawPanel extends javax.swing.JPanel {
         g.setColor(java.awt.Color.black);
         x = width * 0.8 - pic.getWidth()* 0.9*0.583;
         y = height * 0.98;
-        g2d.drawString("方向舵踏板操控%: " + (int) rudderControl, (int) x, (int) y);
+        g2d.drawString(l.getString("rudderControl")+ ": " + (int) rudderControl, (int) x, (int) y);
         g.setColor(java.awt.Color.blue);
         x = x - 0.1 * pic.getWidth() *0.583;
         y = y - height * 0.09 - pic.getHeight() / 2 *0.583;

@@ -24,59 +24,22 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="threeDPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="bigButton" min="-2" max="-2" attributes="0"/>
-                  <Component id="smallButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="clearButton" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="jSlider1" min="-2" pref="27" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="degreeTextField" min="-2" pref="42" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Component id="jSlider2" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
-                  <Component id="dynMapCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <Component id="threeDPanel" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="dynMapCheckBox" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="bigButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="smallButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="clearButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="degreeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jPanel1" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="threeDPanel" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
-              <Component id="jSlider1" min="-2" pref="158" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSlider2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="threeDPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -84,11 +47,18 @@
   </Layout>
   <SubComponents>
     <Container class="tw.com.hasco.MSFS.ui.ThreeDPanel" name="threeDPanel">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="510" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="562" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -98,98 +68,158 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Component class="javax.swing.JButton" name="bigButton">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x653e;&#x5927;"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bigButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="smallButton">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x7e2e;&#x5c0f;"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="smallButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x9593;&#x9694;"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="degreeTextField">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="5"/>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="degreeTextFieldActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JSlider" name="jSlider1">
-      <Properties>
-        <Property name="maximum" type="int" value="45"/>
-        <Property name="minimum" type="int" value="15"/>
-        <Property name="orientation" type="int" value="1"/>
-        <Property name="value" type="int" value="30"/>
-      </Properties>
-      <Events>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSlider1StateChanged"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="clearButton">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x6e05;&#x9664;&#x8cc7;&#x6599;"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JSlider" name="jSlider2">
-      <Properties>
-        <Property name="maximum" type="int" value="45"/>
-        <Property name="minimum" type="int" value="-30"/>
-        <Property name="value" type="int" value="0"/>
-      </Properties>
-      <Events>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSlider2StateChanged"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x79d2;"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="dynMapCheckBox">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x52d5;&#x614b;&#x5730;&#x5716;"/>
-      </Properties>
-      <Events>
-        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="dynMapCheckBoxItemStateChanged"/>
-      </Events>
-    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="dynMapCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="bigButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="smallButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="clearButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="periodLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <Component id="jSlider1" min="-2" pref="27" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="degreeTextField" min="-2" pref="42" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="secLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jSlider2" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="dynMapCheckBox" min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="bigButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="smallButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="clearButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="periodLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="degreeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="secLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jSlider1" min="-2" pref="158" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jSlider2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JCheckBox" name="dynMapCheckBox">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x52d5;&#x614b;&#x5730;&#x5716;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="dynMapCheckBoxItemStateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="bigButton">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x653e;&#x5927;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bigButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="smallButton">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x7e2e;&#x5c0f;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="smallButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="clearButton">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x6e05;&#x9664;&#x8cc7;&#x6599;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="periodLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x9593;&#x9694;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="degreeTextField">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="5"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="degreeTextFieldActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="secLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x65b0;&#x7d30;&#x660e;&#x9ad4;" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="&#x79d2;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSlider" name="jSlider1">
+          <Properties>
+            <Property name="maximum" type="int" value="45"/>
+            <Property name="minimum" type="int" value="15"/>
+            <Property name="orientation" type="int" value="1"/>
+            <Property name="value" type="int" value="30"/>
+          </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSlider1StateChanged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JSlider" name="jSlider2">
+          <Properties>
+            <Property name="maximum" type="int" value="45"/>
+            <Property name="minimum" type="int" value="-30"/>
+            <Property name="value" type="int" value="0"/>
+          </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSlider2StateChanged"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

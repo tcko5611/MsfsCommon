@@ -9,12 +9,15 @@ import fsuipc.FSUIPC;
 import tw.com.hasco.MSFS.model.PlaneType;
 
 /**
- *
+ * FS simulator
  * @author DELL
  */
 public class FSFs extends FSBasic {
 
-    // Calendar cal;
+    /**
+     * constructor
+     * @param planeType : plane or helicopter
+     */
     public FSFs(PlaneType planeType) {
         super(planeType);
         FSUIPC.init();

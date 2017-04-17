@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import tw.com.hasco.MSFS.FS.FSBasic;
 import tw.com.hasco.MSFS.Observer;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 import tw.com.hasco.MSFS.network.MsfsUdpObserver;
 import tw.com.hasco.MSFS.network.MsfsUdpServer;
 
@@ -27,10 +28,21 @@ public class TraceFrame extends javax.swing.JFrame implements Observer, MsfsUdpO
         initComponents();
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
-        this.setTitle("Map 2D導航圖");
+        this.setTitle(LocaleManager.getInstance("Taiwan").getString("figTrace"));
         // setResizable(false);
+        updateWidgetName();
     }
-
+private void updateWidgetName() {
+    LocaleManager l = LocaleManager.getInstance("Taiwan");
+    this.dynMapCheckBox.setText(l.getString("dynMap"));
+    this.smallButton.setText(l.getString("zoomOut"));
+    this.bigButton.setText(l.getString("zoomIn"));
+    this.clearButton.setText(l.getString("clearData"));
+    this.centerButton.setText(l.getString("sure"));
+    this.jLabel1.setText(l.getString("figCenter"));
+    this.jLabel2.setText(l.getString("latitude"));
+    this.jLabel3.setText(l.getString("longitude"));
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,25 +52,39 @@ public class TraceFrame extends javax.swing.JFrame implements Observer, MsfsUdpO
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        smallButton = new javax.swing.JButton();
-        bigButton = new javax.swing.JButton();
         plotTracePanel = new tw.com.hasco.MSFS.ui.TracePanel();
+        jPanel1 = new javax.swing.JPanel();
+        dynMapCheckBox = new javax.swing.JCheckBox();
+        bigButton = new javax.swing.JButton();
+        smallButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        centerButton = new javax.swing.JButton();
         latTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         lngTextField = new javax.swing.JTextField();
+        centerButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
-        dynMapCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        smallButton.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
-        smallButton.setText("縮小");
-        smallButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                smallButtonActionPerformed(evt);
+        plotTracePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout plotTracePanelLayout = new javax.swing.GroupLayout(plotTracePanel);
+        plotTracePanel.setLayout(plotTracePanelLayout);
+        plotTracePanelLayout.setHorizontalGroup(
+            plotTracePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 412, Short.MAX_VALUE)
+        );
+        plotTracePanelLayout.setVerticalGroup(
+            plotTracePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 398, Short.MAX_VALUE)
+        );
+
+        dynMapCheckBox.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
+        dynMapCheckBox.setText("動態地圖");
+        dynMapCheckBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                dynMapCheckBoxItemStateChanged(evt);
             }
         });
 
@@ -70,18 +96,13 @@ public class TraceFrame extends javax.swing.JFrame implements Observer, MsfsUdpO
             }
         });
 
-        plotTracePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout plotTracePanelLayout = new javax.swing.GroupLayout(plotTracePanel);
-        plotTracePanel.setLayout(plotTracePanelLayout);
-        plotTracePanelLayout.setHorizontalGroup(
-            plotTracePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
-        );
-        plotTracePanelLayout.setVerticalGroup(
-            plotTracePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        smallButton.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
+        smallButton.setText("縮小");
+        smallButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smallButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
         jLabel1.setText("圖中心點");
@@ -89,8 +110,12 @@ public class TraceFrame extends javax.swing.JFrame implements Observer, MsfsUdpO
         jLabel2.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
         jLabel2.setText("緯度");
 
+        latTextField.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
+
         jLabel3.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
         jLabel3.setText("經度");
+
+        lngTextField.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
 
         centerButton.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
         centerButton.setText("確定");
@@ -100,10 +125,6 @@ public class TraceFrame extends javax.swing.JFrame implements Observer, MsfsUdpO
             }
         });
 
-        latTextField.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
-
-        lngTextField.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
-
         clearButton.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
         clearButton.setText("清除資料");
         clearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -112,42 +133,32 @@ public class TraceFrame extends javax.swing.JFrame implements Observer, MsfsUdpO
             }
         });
 
-        dynMapCheckBox.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
-        dynMapCheckBox.setText("動態地圖");
-        dynMapCheckBox.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                dynMapCheckBoxItemStateChanged(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(plotTracePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dynMapCheckBox)
                     .addComponent(bigButton)
                     .addComponent(smallButton)
                     .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(latTextField))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lngTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(centerButton))
-                    .addComponent(clearButton)
-                    .addComponent(dynMapCheckBox))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(latTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lngTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(centerButton)
+                    .addComponent(clearButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(dynMapCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -157,19 +168,35 @@ public class TraceFrame extends javax.swing.JFrame implements Observer, MsfsUdpO
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(latTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(lngTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(centerButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(clearButton)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(plotTracePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(plotTracePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 145, Short.MAX_VALUE))
         );
 
         pack();
@@ -187,25 +214,26 @@ public class TraceFrame extends javax.swing.JFrame implements Observer, MsfsUdpO
 
     private void centerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_centerButtonActionPerformed
         // TODO add your handling code here:
+        LocaleManager l = LocaleManager.getInstance("Taiwan");
         double lat = Double.parseDouble(latTextField.getText());
         double lng = Double.parseDouble(lngTextField.getText());
         if (lng < -175) {
-            JOptionPane.showMessageDialog(this, "經度太小", "經度", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, l.getString("longitude")  + l.getString("tooSmall"), l.getString("longitude"), JOptionPane.WARNING_MESSAGE);
             lngTextField.setText("-175");
             lng = -175;
         }
         if (lng > 175) {
-            JOptionPane.showMessageDialog(this, "經度太大", "經度", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, l.getString("longitude")  + l.getString("tooBig"), l.getString("longitude"), JOptionPane.WARNING_MESSAGE);
             lngTextField.setText("175");
             lng = 175;
         }
         if (lat < -85) {
-            JOptionPane.showMessageDialog(this, "緯度太小", "緯度", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, l.getString("latitude")  + l.getString("tooSmall"), l.getString("latitude"), JOptionPane.WARNING_MESSAGE);
             latTextField.setText("-85");
             lat=-85;
         }
         if (lat > 85) {
-            JOptionPane.showMessageDialog(this, "緯度太大", "緯度", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, l.getString("latitude")  + l.getString("tooBig"), l.getString("latitude"), JOptionPane.WARNING_MESSAGE);
             latTextField.setText("85");
             lat= 85;
         }
@@ -256,7 +284,7 @@ public class TraceFrame extends javax.swing.JFrame implements Observer, MsfsUdpO
         }
         //</editor-fold>
         //</editor-fold>
-
+LocaleManager l = LocaleManager.getInstance("China");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new TraceFrame().setVisible(true);
@@ -271,6 +299,7 @@ public class TraceFrame extends javax.swing.JFrame implements Observer, MsfsUdpO
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField latTextField;
     private javax.swing.JTextField lngTextField;
     private tw.com.hasco.MSFS.ui.TracePanel plotTracePanel;

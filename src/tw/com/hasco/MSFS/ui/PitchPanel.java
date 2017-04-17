@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import tw.com.hasco.MSFS.FS.FSBasic;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
  *
@@ -92,7 +93,7 @@ public class PitchPanel extends javax.swing.JPanel {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-
+        LocaleManager l = LocaleManager.getInstance("Taiwan");
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
@@ -109,13 +110,13 @@ public class PitchPanel extends javax.swing.JPanel {
         // title string
         x = 0.05 * width;
         y = 0.05 * height;
-        g2d.drawString("俯仰操控姿態動畫 Pitch Control & Attitude Dynamic Graphic", (int) x, (int) y);
+        g2d.drawString(l.getString("pitchPanelStr") + " Pitch Control & Attitude Dynamic Graphic", (int) x, (int) y);
         // symbol table
         x = 0.05 * width;
         y = 0.81 * height;
-        g2d.drawString("\u03B8:俯仰角:" + (int)pitch, (int) x, (int) y);
-        g2d.drawString("\u03B1:攻角:" + (int)aoa, (int) x  , (int) y + g.getFont().getSize()+10);
-        g2d.drawString("\u03B4E:升降舵角度:"+ (int) this.elevatorDeflection, (int) x, (int) y+ 2* g.getFont().getSize()+20);
+        g2d.drawString("\u03B8:" + l.getString("pitch") + ":" + (int)pitch, (int) x, (int) y);
+        g2d.drawString("\u03B1:" + l.getString("aoa") + ":" + (int)aoa, (int) x  , (int) y + g.getFont().getSize()+10);
+        g2d.drawString("\u03B4E:" + l.getString("elevatorDeflection")+ ":"+ (int) this.elevatorDeflection, (int) x, (int) y+ 2* g.getFont().getSize()+20);
         // draw pitch            
         double rot = Math.toRadians(pitch);
         AffineTransform at = new AffineTransform();
@@ -191,7 +192,7 @@ public class PitchPanel extends javax.swing.JPanel {
         // draw elevatorControl
         x = 0.7 *width  - pic1.getWidth() * .15*0.583;
         y = height * 0.98;
-        g2d.drawString("升降舵操控%", (int) x, (int) y);
+        g2d.drawString(l.getString("elevatorControl") + "%", (int) x, (int) y);
         x = 0.7 * width - pic1.getWidth() / 2 * 0.583;
         // x = width /2;
         y = height * 0.9 - pic1.getHeight() / 2 * 0.583;

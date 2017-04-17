@@ -26,25 +26,25 @@ public class CtrlPanel extends javax.swing.JPanel {
     }
 
     private void setLabelsTest() {
-        this.throttleLevelLabel.setText(LocaleManager.getInstance().getString("throttleLevel"));
-        this.engineRPMLabel.setText(LocaleManager.getInstance().getString("engineRPM"));
-        this.propLevelLabel.setText(LocaleManager.getInstance().getString("propLevel"));
-        this.propRPMLabel.setText(LocaleManager.getInstance().getString("propRPM"));
-        this.mixtureLevelLabel.setText(LocaleManager.getInstance().getString("mixtureLevel"));
-        this.torqueLabel.setText(LocaleManager.getInstance().getString("torque"));
-        this.elevatorControlLabel.setText(LocaleManager.getInstance().getString("elevatorControl"));
-        this.elevatorDeflectionLabel.setText(LocaleManager.getInstance().getString("elevatorDeflection"));
-        this.aileronControlLabel.setText(LocaleManager.getInstance().getString("aileronControl"));
-        this.aileronDeflectionLabel.setText(LocaleManager.getInstance().getString("aileronDeflection"));
-        this.rudderControlLabel.setText(LocaleManager.getInstance().getString("rudderControl"));
-        this.rudderDeflectionLabel.setText(LocaleManager.getInstance().getString("rudderDeflection"));
-        this.flapsControlLabel.setText(LocaleManager.getInstance().getString("flapsControl"));
-        this.flapsDeflectionLabel.setText(LocaleManager.getInstance().getString("flapsDeflection"));
-        this.gearControlLabel.setText(LocaleManager.getInstance().getString("gearControl"));
-        this.gearPositionLabel.setText(LocaleManager.getInstance().getString("gearPosition"));
-        this.elevatorTrimControlLabel.setText(LocaleManager.getInstance().getString("elevatorTrimControl"));
-        this.aileronTrimControlLabel.setText(LocaleManager.getInstance().getString("aileronTrimControl"));
-        this.rudderTrimControlLabel.setText(LocaleManager.getInstance().getString("rudderTrimControl"));
+        this.throttleLevelLabel.setText(LocaleManager.getInstance("Taiwan").getString("throttleLevel"));
+        this.engineRPMLabel.setText(LocaleManager.getInstance("Taiwan").getString("engineRPM"));
+        this.propLevelLabel.setText(LocaleManager.getInstance("Taiwan").getString("propLevel"));
+        this.propRPMLabel.setText(LocaleManager.getInstance("Taiwan").getString("propRPM"));
+        this.mixtureLevelLabel.setText(LocaleManager.getInstance("Taiwan").getString("mixtureLevel"));
+        this.torqueLabel.setText(LocaleManager.getInstance("Taiwan").getString("torque"));
+        this.elevatorControlLabel.setText(LocaleManager.getInstance("Taiwan").getString("elevatorControl"));
+        this.elevatorDeflectionLabel.setText(LocaleManager.getInstance("Taiwan").getString("elevatorDeflection"));
+        this.aileronControlLabel.setText(LocaleManager.getInstance("Taiwan").getString("aileronControl"));
+        this.aileronDeflectionLabel.setText(LocaleManager.getInstance("Taiwan").getString("aileronDeflection"));
+        this.rudderControlLabel.setText(LocaleManager.getInstance("Taiwan").getString("rudderControl"));
+        this.rudderDeflectionLabel.setText(LocaleManager.getInstance("Taiwan").getString("rudderDeflection"));
+        this.flapsControlLabel.setText(LocaleManager.getInstance("Taiwan").getString("flapsControl"));
+        this.flapsDeflectionLabel.setText(LocaleManager.getInstance("Taiwan").getString("flapsDeflection"));
+        this.gearControlLabel.setText(LocaleManager.getInstance("Taiwan").getString("gearControl"));
+        this.gearPositionLabel.setText(LocaleManager.getInstance("Taiwan").getString("gearPosition"));
+        this.elevatorTrimControlLabel.setText(LocaleManager.getInstance("Taiwan").getString("elevatorTrimControl"));
+        this.aileronTrimControlLabel.setText(LocaleManager.getInstance("Taiwan").getString("aileronTrimControl"));
+        this.rudderTrimControlLabel.setText(LocaleManager.getInstance("Taiwan").getString("rudderTrimControl"));
     }
 
     /**

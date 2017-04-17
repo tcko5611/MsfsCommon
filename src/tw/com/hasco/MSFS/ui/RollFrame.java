@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import tw.com.hasco.MSFS.FS.FSBasic;
 import tw.com.hasco.MSFS.Observer;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
  *
@@ -23,7 +24,7 @@ public class RollFrame extends javax.swing.JFrame implements Observer {
         initComponents();
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
-        this.setTitle("Roll 滾轉姿態");
+        this.setTitle(LocaleManager.getInstance("Taiwan").getString("figRoll"));
         // this.setResizable(false);
     }
 
@@ -57,11 +58,11 @@ public class RollFrame extends javax.swing.JFrame implements Observer {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plotFrontPanel, 350, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(plotFrontPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(plotFrontPanel, 400, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(plotFrontPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
 
         pack();
@@ -94,10 +95,10 @@ public class RollFrame extends javax.swing.JFrame implements Observer {
         }
         //</editor-fold>
         //</editor-fold>
-
+        LocaleManager l = LocaleManager.getInstance("China");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-                new RollFrame().setVisible(true);
+            new RollFrame().setVisible(true);
         });
     }
 

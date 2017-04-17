@@ -19,6 +19,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import tw.com.hasco.MSFS.FS.FSBasic;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
  *
@@ -49,8 +50,8 @@ public class RollPanel extends javax.swing.JPanel {
             pic = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
             AffineTransform at = new AffineTransform();
             at.scale(0.583, 0.583);
-            AffineTransformOp scaleOp = 
-                new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+            AffineTransformOp scaleOp
+                    = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
             pic = scaleOp.filter(before, pic);
             // pic = ImageIO.read(classLoader.getResourceAsStream("draw/pic2.png"));
         } catch (IOException ex) {
@@ -86,7 +87,7 @@ public class RollPanel extends javax.swing.JPanel {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-
+        LocaleManager l = LocaleManager.getInstance("Taiwan");
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
@@ -103,12 +104,12 @@ public class RollPanel extends javax.swing.JPanel {
         // title string
         x = 0.05 * width;
         y = 0.05 * height;
-        g2d.drawString("滾轉操控姿態動畫 Roll Control & Attitude Dynamic Graphic", (int) x, (int) y);
+        g2d.drawString(l.getString("rollPanelStr")+" Roll Control & Attitude Dynamic Graphic", (int) x, (int) y);
         // symbol table
         x = 0.05 * width;
         y = 0.85 * height;
-        g2d.drawString("\u03D5:滾轉角:" + (int) bank, (int) x, (int) y);
-        g2d.drawString("\u03B4A:副翼角度:" + this.aileronDeflection, (int) x, (int) y + g.getFont().getSize()+10);
+        g2d.drawString("\u03D5:" + l.getString("bank") + ":" + (int) bank, (int) x, (int) y);
+        g2d.drawString("\u03B4A:" + l.getString("aileronDeflection") + ":" + this.aileronDeflection, (int) x, (int) y + g.getFont().getSize() + 10);
         // draw bank            
         double bankInRad = Math.toRadians(bank);
         AffineTransform at = new AffineTransform();
@@ -131,7 +132,7 @@ public class RollPanel extends javax.swing.JPanel {
         // draw pitch
         g.setColor(java.awt.Color.green);
         g2d.drawLine((int) (0.45 * width), (int) (height / 2), (int) (0.9 * width), (int) (height / 2));
-        g2d.drawLine((int) (0.5 * width), (int) (0.55*height), (int) (0.5 * width), (int) (0.2 * height));
+        g2d.drawLine((int) (0.5 * width), (int) (0.55 * height), (int) (0.5 * width), (int) (0.2 * height));
         x1 = 0.5 * width + 0.4 * width * Math.cos(bankInRad);
         y1 = 0.5 * height + 0.4 * width * Math.sin(bankInRad);
         x2 = 0.5 * width - 0.3 * width * Math.cos(bankInRad);
@@ -148,16 +149,16 @@ public class RollPanel extends javax.swing.JPanel {
         g2d.drawString("\u03D5:" + (int) (bank), (int) x, (int) y);
         // draw aileronDeflection
         g.setColor(java.awt.Color.blue);
-        double bankAileron = bank - aileronDeflection*0.5;
+        double bankAileron = bank - aileronDeflection * 0.5;
         double bankAileronInRad = Math.toRadians(bankAileron);
         x1 = 0.5 * width + 0.2 * width * Math.cos(bankInRad);
         y1 = 0.5 * height + 0.2 * width * Math.sin(bankInRad);
         x2 = 0.5 * width + 0.3 * width * Math.cos(bankInRad);
         y2 = 0.5 * height + 0.3 * width * Math.sin(bankInRad);
-        double r = 0.3 * width * Math.sin(Math.toRadians(aileronDeflection*0.5));
-        x3 = x1 + r*Math.sin(bankInRad);
-        y3 = y1 - r* Math.cos(bankInRad);        
-        x4 = x2 + r*Math.sin(bankInRad);
+        double r = 0.3 * width * Math.sin(Math.toRadians(aileronDeflection * 0.5));
+        x3 = x1 + r * Math.sin(bankInRad);
+        y3 = y1 - r * Math.cos(bankInRad);
+        x4 = x2 + r * Math.sin(bankInRad);
         y4 = y2 - r * Math.cos(bankInRad);
         g2d.drawLine((int) x1, (int) y1, (int) x3, (int) y3);
         g2d.drawLine((int) x2, (int) y2, (int) x4, (int) y4);
@@ -167,9 +168,9 @@ public class RollPanel extends javax.swing.JPanel {
         y1 = 0.5 * height - 0.2 * width * Math.sin(bankInRad);
         x2 = 0.5 * width - 0.3 * width * Math.cos(bankInRad);
         y2 = 0.5 * height - 0.3 * width * Math.sin(bankInRad);
-        x3 = x1 - r*Math.sin(bankInRad);
-        y3 = y1 + r* Math.cos(bankInRad);        
-        x4 = x2 - r*Math.sin(bankInRad);
+        x3 = x1 - r * Math.sin(bankInRad);
+        y3 = y1 + r * Math.cos(bankInRad);
+        x4 = x2 - r * Math.sin(bankInRad);
         y4 = y2 + r * Math.cos(bankInRad);
         g2d.drawLine((int) x1, (int) y1, (int) x3, (int) y3);
         g2d.drawLine((int) x2, (int) y2, (int) x4, (int) y4);
@@ -185,33 +186,33 @@ public class RollPanel extends javax.swing.JPanel {
         x = 0.5 * width + 0.42 * width * Math.cos(bankAileron2InRad);
         y = 0.5 * height + 0.42 * width * Math.sin(bankAileron2InRad);
         g.setColor(java.awt.Color.black);
-        g2d.drawString("\u03B4A:"+ aileronDeflection, (int) x, (int) y);
+        g2d.drawString("\u03B4A:" + aileronDeflection, (int) x, (int) y);
         // draw elevatorControl
-        x = width *0.7 - pic.getWidth() * .15 *0.583;
+        x = width * 0.7 - pic.getWidth() * .15 * 0.583;
         y = height * 0.96;
-        g2d.drawString("滾轉副翼操控%" , (int) x, (int) y);
-        x = width * 0.7 - pic.getWidth() * 0.495*0.583;
-        y = height * 0.85 - pic.getHeight() / 2 *0.583;
+        g2d.drawString(l.getString("aileronControl") + "%", (int) x, (int) y);
+        x = width * 0.7 - pic.getWidth() * 0.495 * 0.583;
+        y = height * 0.85 - pic.getHeight() / 2 * 0.583;
         g2d.drawImage(pic, (int) x, (int) y, null);
         x1 = width * 0.7;
         y1 = height * 0.9;
         g.setColor(java.awt.Color.blue);
         double controlInRad = Math.toRadians(90 - this.aileronControl * 0.45);
-        x2 = x1 + 0.6 * pic.getHeight() * Math.cos(controlInRad) *0.583;
+        x2 = x1 + 0.6 * pic.getHeight() * Math.cos(controlInRad) * 0.583;
         y2 = y1 - 0.6 * pic.getHeight() * Math.sin(controlInRad) * 0.583;
         g2d.setStroke(new BasicStroke(3));
         g2d.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
         g2d.drawOval((int) x2 - 3, (int) y2 - 3, 6, 6);
         // 
         g.setColor(java.awt.Color.black);
-        controlInRad = Math.toRadians(90 - this.aileronControl * 0.225 );
-        x = x1 + 0.59 * pic.getHeight() * Math.cos(controlInRad) *0.583;
-        y = y1 - 0.59 * pic.getHeight() * Math.sin(controlInRad) *0.583;
+        controlInRad = Math.toRadians(90 - this.aileronControl * 0.225);
+        x = x1 + 0.59 * pic.getHeight() * Math.cos(controlInRad) * 0.583;
+        y = y1 - 0.59 * pic.getHeight() * Math.sin(controlInRad) * 0.583;
         g2d.drawString("" + aileronControl + "%", (int) x, (int) y);
-        x = x1 - 0.59 * pic.getHeight()*0.583;
-        y = y1 - 0.59 * pic.getHeight()*0.583;
+        x = x1 - 0.59 * pic.getHeight() * 0.583;
+        y = y1 - 0.59 * pic.getHeight() * 0.583;
         g2d.setStroke(new BasicStroke(1));
-        g2d.drawArc((int) x, (int) y, (int) (1.18 * pic.getHeight()*0.583), (int) (1.18 * pic.getHeight()*0.583), 90, (int) (-1 * this.aileronControl * 0.45));
+        g2d.drawArc((int) x, (int) y, (int) (1.18 * pic.getHeight() * 0.583), (int) (1.18 * pic.getHeight() * 0.583), 90, (int) (-1 * this.aileronControl * 0.45));
         // g2d.drawImage(pic2, at,  this
     }
 

@@ -933,7 +933,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         // TODO add your handling code here:
         Debugger.log("about");
-        JOptionPane.showMessageDialog(null, LocaleManager.getInstance().getString("credit"), "關於", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, LocaleManager.getInstance("Taiwan").getString("credit"), "關於", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void macMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_macMenuItemActionPerformed
@@ -945,7 +945,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void buyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyMenuItemActionPerformed
         // TODO add your handling code here:
         Debugger.log("about");
-        JOptionPane.showMessageDialog(null, LocaleManager.getInstance().getString("licenseFileError"), "購買", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, LocaleManager.getInstance("Taiwan").getString("licenseFileError"), "購買", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_buyMenuItemActionPerformed
 
     private void idMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idMenuItemActionPerformed

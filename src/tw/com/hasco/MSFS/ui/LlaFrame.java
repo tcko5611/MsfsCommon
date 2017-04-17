@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import tw.com.hasco.MSFS.FS.FSBasic;
 import tw.com.hasco.MSFS.Observer;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /**
  *
@@ -26,7 +27,7 @@ public class LlaFrame extends javax.swing.JFrame implements Observer {
         initComponents();
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
-        setTitle("飛航資訊－座標－速度－姿態－導航");
+        setTitle(LocaleManager.getInstance("Taiwan").getString("fig_lla"));
     }
 
     /**
@@ -99,6 +100,7 @@ public class LlaFrame extends javax.swing.JFrame implements Observer {
         //</editor-fold>
 
         /* Create and display the form */
+        LocaleManager l = LocaleManager.getInstance("China");
         LlaFrame dataFrame = new LlaFrame();
         java.awt.EventQueue.invokeLater(() -> {
             dataFrame.setVisible(true);

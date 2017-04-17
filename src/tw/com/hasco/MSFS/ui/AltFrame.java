@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import tw.com.hasco.MSFS.FS.FSBasic;
 import tw.com.hasco.MSFS.Observer;
+import tw.com.hasco.MSFS.locale.LocaleManager;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -32,7 +33,7 @@ public class AltFrame extends javax.swing.JFrame implements Observer {
         initComponents();
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
-        this.setTitle("Altitude 高度");
+        this.setTitle(LocaleManager.getInstance("Taiwan").getString("fig_altitude"));
         // this.setResizable(false);
     }
 
@@ -45,54 +46,55 @@ public class AltFrame extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        plotAltitudePanel1 = new tw.com.hasco.MSFS.ui.AltPanel();
-        timeLabel = new javax.swing.JLabel();
-        altitudeLabel = new javax.swing.JLabel();
-        flyAltitudeLabel = new javax.swing.JLabel();
+        altPanel = new tw.com.hasco.MSFS.ui.AltPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        timeLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        altitudeLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        flyAltitudeLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         groundAltitudeLabel = new javax.swing.JLabel();
         clearButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout plotAltitudePanel1Layout = new javax.swing.GroupLayout(plotAltitudePanel1);
-        plotAltitudePanel1.setLayout(plotAltitudePanel1Layout);
-        plotAltitudePanel1Layout.setHorizontalGroup(
-            plotAltitudePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+        javax.swing.GroupLayout altPanelLayout = new javax.swing.GroupLayout(altPanel);
+        altPanel.setLayout(altPanelLayout);
+        altPanelLayout.setHorizontalGroup(
+            altPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 349, Short.MAX_VALUE)
         );
-        plotAltitudePanel1Layout.setVerticalGroup(
-            plotAltitudePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+        altPanelLayout.setVerticalGroup(
+            altPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 409, Short.MAX_VALUE)
         );
+
+        jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel1.setText("時間");
 
         timeLabel.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         timeLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         timeLabel.setText("00:00:00");
+
+        jLabel2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setText("航高");
 
         altitudeLabel.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         altitudeLabel.setForeground(new java.awt.Color(255, 0, 0));
         altitudeLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         altitudeLabel.setText("0");
 
+        jLabel3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jLabel3.setForeground(java.awt.Color.blue);
+        jLabel3.setText("離地");
+
         flyAltitudeLabel.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         flyAltitudeLabel.setForeground(java.awt.Color.blue);
         flyAltitudeLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         flyAltitudeLabel.setText("0");
-
-        jLabel1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel1.setText("時間");
-
-        jLabel2.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("航高");
-
-        jLabel3.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jLabel3.setForeground(java.awt.Color.blue);
-        jLabel3.setText("離地");
 
         jLabel4.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 153, 51));
@@ -111,59 +113,72 @@ public class AltFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(timeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(altitudeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(flyAltitudeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(groundAltitudeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(clearButton)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(timeLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(altitudeLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(flyAltitudeLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(groundAltitudeLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clearButton)
+                .addGap(0, 215, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(plotAltitudePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(altPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(timeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(groundAltitudeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(altitudeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(flyAltitudeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(clearButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(altPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(plotAltitudePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(timeLabel)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(altitudeLabel)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(flyAltitudeLabel)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(groundAltitudeLabel)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(clearButton)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -181,7 +196,7 @@ public class AltFrame extends javax.swing.JFrame implements Observer {
             this.altitudeLabel.setText(String.format("%.1f", altitude));
             this.flyAltitudeLabel.setText(String.format("%.1f", flyAltitude));
             this.groundAltitudeLabel.setText(String.format("%.1f", groundAltitude));
-            plotAltitudePanel1.addData(strTime, altitude, groundAltitude);
+            altPanel.addData(strTime, altitude, groundAltitude);
         } catch (ParseException ex) {
             Logger.getLogger(AltFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -251,6 +266,7 @@ public class AltFrame extends javax.swing.JFrame implements Observer {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private tw.com.hasco.MSFS.ui.AltPanel altPanel;
     private javax.swing.JLabel altitudeLabel;
     private javax.swing.JButton clearButton;
     private javax.swing.JLabel flyAltitudeLabel;
@@ -259,7 +275,7 @@ public class AltFrame extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private tw.com.hasco.MSFS.ui.AltPanel plotAltitudePanel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel timeLabel;
     // End of variables declaration//GEN-END:variables
 
@@ -280,6 +296,6 @@ public class AltFrame extends javax.swing.JFrame implements Observer {
         this.altitudeLabel.setText("0");
         this.flyAltitudeLabel.setText("0");
         this.groundAltitudeLabel.setText("0");
-        this.plotAltitudePanel1.clearData();
+        this.altPanel.clearData();
     }
 }

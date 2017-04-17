@@ -30,7 +30,7 @@ public class ServerFrame extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/draw/h.jpg")));
-        setTitle("接收資料");
+        setTitle("Server");
         this.ipTextField.setText(MsfsUdpServer.getIpName());
         System.out.println(MsfsUdpServer.getIpName());
         port = 54947;
@@ -54,14 +54,14 @@ public class ServerFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
-        jLabel1.setText("本機 IP");
+        jLabel1.setText("IP");
 
         ipTextField.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
         ipTextField.setText("192.168.31.133");
         ipTextField.setEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
-        jLabel2.setText("接收 PORT");
+        jLabel2.setText("PORT");
 
         portTextField.setFont(new java.awt.Font("新細明體", 0, 14)); // NOI18N
         portTextField.setText("54947");
