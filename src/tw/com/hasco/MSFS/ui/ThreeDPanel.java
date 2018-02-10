@@ -37,11 +37,11 @@ public class ThreeDPanel extends javax.swing.JPanel {
     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
     // panel setting don't change it
     //final int sx0 = 194; // orinal x point  
-    final int sx0 = 250; // orinal x point 
+    int sx0 = 250; // orinal x point 
     // final int sy0 = 300; // origianl y point 
-    final int sy0 = 250; // origianl y point 
-    final int sxdim = 110; // x length for x axis
-    final int sydim = 110; // y length for y axis
+    int sy0 = 250; // origianl y point 
+    int sxdim = 110; // x length for x axis
+    int sydim = 110; // y length for y axis
     long preTime = 0; // previous time for dynamic map
     boolean dynMapEnable = false;
     double theta_xy = Math.toRadians(45.0);
@@ -178,6 +178,12 @@ public class ThreeDPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,6 +195,16 @@ public class ThreeDPanel extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        // TODO add your handling code here:
+        int w = getWidth();
+        int h = getHeight();
+        sx0 = 250*w/574; // orinal x point 
+        sy0 = 250*h/388; // origianl y point 
+        sxdim = 110*w/574; // x length for x axis
+        sydim = 110*h/388; // y length for y axis
+    }//GEN-LAST:event_formComponentResized
     private void drawAxis(Graphics2D g2d) {
 
         double sxxdim = sxdim * Math.cos(theta_x);
@@ -201,36 +217,22 @@ public class ThreeDPanel extends javax.swing.JPanel {
         int p12_y = (int) (sy0 - sxydim + syydim);
         int p21_x = (int) (sx0 - sxxdim - syxdim);
         int p21_y = (int) (sy0 + sxydim - syydim);
-        // int p14_x = (int) (sx0 + sxxdim - syxdim);
-        // int p14_y = (int) (sy0 - sxydim - syydim);
 
         int p13_x = (int) (sx0 - sxxdim + syxdim);
         int p13_y = (int) (sy0 + sxydim + syydim) - szdim;
-        // int p22_x = (int) (sx0 + sxxdim + syxdim);
-        // int p22_y = (int) (sy0 - sxydim + syydim) - szdim;
-        // int p23_x = (int) (sx0 - sxxdim - syxdim);
-        // int p23_y = (int) (sy0 + sxydim - syydim) - szdim;
-        // int p24_x = (int) (sx0 + sxxdim - syxdim);
-        // int p24_y = (int) (sy0 - sxydim - syydim) - szdim;
+
         g2d.setColor(Color.black);
         g2d.drawLine(p11_x, p11_y, p12_x, p12_y);
-        // g2d.drawLine(p13_x, p13_y, p14_x, p14_y);
-        g2d.drawLine(p11_x, p11_y, p21_x, p21_y);
-        // g2d.drawLine(p12_x, p12_y, p14_x, p14_y);
 
-        // g2d.drawLine(p21_x, p21_y, p22_x, p22_y);
-        // g2d.drawLine(p23_x, p23_y, p24_x, p24_y);
-        // g2d.drawLine(p21_x, p21_y, p23_x, p23_y);
-        // g2d.drawLine(p22_x, p22_y, p24_x, p24_y);
+        g2d.drawLine(p11_x, p11_y, p21_x, p21_y);
+
         float[] dash1 = {10f, 0f, 10f};
         BasicStroke bs1 = new BasicStroke(1, BasicStroke.CAP_BUTT,
                 BasicStroke.JOIN_ROUND, 1.0f, dash1, 2f);
         g2d.setStroke(bs1);
         g2d.drawLine(p11_x, p11_y, p13_x, p13_y);
         g2d.setStroke(new BasicStroke(1.0f));
-        // g2d.drawLine(p12_x, p12_y, p22_x, p22_y);
-        // g2d.drawLine(p13_x, p13_y, p23_x, p23_y);
-        //g2d.drawLine(p14_x, p14_y, p24_x, p24_y);
+
         // draw x axis label
         for (int i = 0; i <= DIVX; ++i) {
             double xmin = cx - r;
@@ -281,74 +283,7 @@ public class ThreeDPanel extends javax.swing.JPanel {
         }
         // for axis
         drawAxis(g2d);
-        /*
-        g2d.drawRect(sx0 - sxdim + syxdim, sy0 - szdim - syydim, 2 * sxdim, szdim);
-        g2d.drawRect(sx0 - sxdim - syxdim, sy0 - szdim + syydim, 2 * sxdim, szdim);
-        g2d.drawLine(sx0 - sxdim - syxdim, sy0 + syydim, sx0 - sxdim + syxdim, sy0 - syydim);
-        g2d.drawLine(sx0 + sxdim - syxdim, sy0 + syydim, sx0 + sxdim + syxdim, sy0 - syydim);
-        g2d.drawLine(sx0 - sxdim - syxdim, sy0 - szdim + syydim, sx0 - sxdim + syxdim, sy0 - szdim - syydim);
-        g2d.drawLine(sx0 + sxdim - syxdim, sy0 - szdim + syydim, sx0 + sxdim + syxdim, sy0 - szdim - syydim);
-        // draw y axis
-        for (int i = 0; i <= DIVX; ++i) {
-            float[] dash1 = {2f, 0f, 2f};
-            // BasicStroke bs1 = new BasicStroke(1, BasicStroke.CAP_BUTT,
-            // BasicStroke.JOIN_ROUND, 1.0f, dash1, 2f);
-            // g2d.setStroke(bs1);
-            double xmin = cx - r;
-            double xmax = cx + r;
-            double x = xmin + i * (xmax - xmin) / DIVX;
-            int ix = -sxdim + 2 * i * sxdim / DIVX;
-            int sx1 = sx0 + ix - syxdim;
-            int sy1 = sy0 + syydim;
-            g2d.drawLine(sx1, sy1, sx1, sy1 + 10);
-            // int sx2 = sx0 + ix + syxdim;
-            // int sy2 = sy0 + szdim - syydim;
-            // g2d.drawLine(sx1, sy1, sx2, sy2);
-            g2d.drawString(precisionTwo.format(x), sx1 - 10, sy1 + 30);
-            g2d.setStroke(new BasicStroke(1.0f));
-        }
-        // draw x axis
-        for (int i = 0; i <= DIVY; ++i) {
-            float[] dash1 = {2f, 0f, 2f};
-            // BasicStroke bs1 = new BasicStroke(1, BasicStroke.CAP_BUTT,
-            // BasicStroke.JOIN_ROUND, 1.0f, dash1, 2f);
-            // g2d.setStroke(bs1);
-            double ymin = cy - r;
-            double ymax = cy + r;
-            double y = ymin + i * (ymax - ymin) / DIVY;
-            int iy = syydim - 2 * i * syydim / DIVY;
-            int ix = -syxdim + 2 * i * syxdim / DIVY;
-            int sx1 = sx0 + ix - sxdim;
-            int sy1 = sy0 + iy;
-            int sx2 = sx0 + ix + sxdim;
-            int sy2 = sy0 + iy;
-            // g2d.drawLine(sx1, sy1, sx2, sy2);
-            g2d.drawLine(sx2, sy2, sx2 + 10, sy2);
-            g2d.drawString(precisionTwo.format(y), sx2 + 20, sy2 + 5);
-            // g2d.setStroke(new BasicStroke(1.0f));
-            // int ix2 = ix + 80;
-            // g.drawLine(ix, yend, ix2, yend2);
-        }
-        // draw z axis
-        for (int i = 0; i <= DIVZ; ++i) {
-            // float[] dash1 = {2f, 0f, 2f};
-            // BasicStroke bs1 = new BasicStroke(1, BasicStroke.CAP_BUTT,
-            // BasicStroke.JOIN_ROUND, 1.0f, dash1, 2f);
-            // g2d.setStroke(bs1);
-            double z = zmin + i * (zmax - zmin) / DIVZ;
-            int iy = (int) (syydim - z * szdim / (zmax - zmin));
-            int sx1 = sx0 - syxdim - sxdim;
-            int sy1 = sy0 + iy;
-            int sx2 = sx0 - syxdim + sxdim;
-            int sy2 = sy0 + iy;
-            // g2d.drawLine(sx1, sy1, sx2, sy2);
-            g2d.drawLine(sx1 - 10, sy1, sx1, sy1);
-            g2d.drawString(precisionTwo.format(z), sx1 - 30, sy2 + 5);
-            // g2d.setStroke(new BasicStroke(1.0f));
-            // int ix2 = ix + 80;
-            // g.drawLine(ix, yend, ix2, yend2);
-        }
-         */
+
         g2d.setColor(Color.black);
         double xmin = cx - r, xmax = cx + r, ymin = cy - r, ymax = cy + r, xdelta = 2 * r / NUM, ydelta = 2 * r / NUM;
         maps.forEach((m) -> {

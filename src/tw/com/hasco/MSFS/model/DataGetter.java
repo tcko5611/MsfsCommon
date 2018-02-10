@@ -3,6 +3,7 @@ package tw.com.hasco.MSFS.model;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
+import java.net.SocketException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -36,48 +37,38 @@ public class DataGetter implements Runnable {
      * contructor for FS, xplane datagetter
      *
      * @param planeType aircraft or helicopter
-     * @param str fs or xplane
+     * @param str fs, xplane or file name
      * @throws IOException catch xplane exception
      */
-    public DataGetter(PlaneType planeType, String str) throws IOException {
-        updatePeriod = 100;
+    private void setDataLt(PlaneType planeType) {
         this.planeType = planeType;
-        switch (planeType) {
+      switch (planeType) {
             case AIRCRAFT:
                 planeDataLt = PlaneType.getAircraftDataLt();
                 break;
             case HELICOPTER:
                 planeDataLt = PlaneType.getHelicopterDataLt();
                 break;
-        }
-        if ("fs".equals(str)) {
-            this.fsBasic = new FSFs(planeType);
+        }  
+        
+    }
+    private void setFsBasic(String str) throws IOException {
+       if ("fs".equals(str)) {
+            fsBasic = new FSFs(planeType);
         } else if ("xplane".equals(str)) {
             fsBasic = new FSXplane(planeType);
+        } else {
+           fsBasic = new FSFile(str, planeType); 
         }
-
-        observers = new LinkedList<>();
     }
-
-    /**
-     * constructor for file
-     *
-     * @param fileName file name
-     * @param planeType aircraft ot helicopter
-     * @throws IOException file exception
-     */
-    public DataGetter(String fileName, PlaneType planeType) throws IOException {
+    public DataGetter(PlaneType planeType, String str) throws IOException {
         updatePeriod = 100;
-        this.planeType = planeType;
-        try {
-            this.fsBasic = new FSFile(fileName, planeType);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(DataGetter.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        updatePeriod = fsBasic.getRecordPeriod(); // special for read file replay, need to fit for record period
+        setDataLt(planeType);
+        setFsBasic(str);
         observers = new LinkedList<>();
     }
 
+    
     /**
      * notify observers
      */
@@ -119,10 +110,6 @@ public class DataGetter implements Runnable {
         } catch (IOException | FSFileException ex) {
             Logger.getLogger(DataGetter.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public boolean recordable() {
-        return true;
     }
 
     public void addObserver(Observer o) {
